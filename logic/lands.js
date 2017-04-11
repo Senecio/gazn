@@ -105,6 +105,7 @@ Lands.prototype.Reset = function(userId, landIndex, callback) {
             land.state = 0;
             land.seedId = 0;
             land.sowTime = 0;
+            delete land.reduceTime;
             // 更新数据
             var landsJson = JSON.stringify(lands);
             mysql.Query2(updateSql, [landsJson, userId], function(results, fields) { if (callback) callback(true); });
