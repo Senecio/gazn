@@ -6,7 +6,6 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-IO = require('socket.io')(http);
 
 // 设置客户端根目录
 app.use(express.static(__dirname + "/web-mobile"));
