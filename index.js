@@ -5,16 +5,12 @@
 
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
+var expressWs = require('express-ws')(app);
 
 // 设置客户端根目录
 app.use(express.static(__dirname + "/web-mobile"));
 // 监听端口
-var port = process.env.LEANCLOUD_APP_PORT || 80
-http.listen( port, function() {
-    console.log('[DEBUG] Listening on *:' + port);
-});
-
+app.listen(process.env.LEANCLOUD_APP_PORT);
 
 GameLog = require('./Logger.js');
 config = require('./config.js');
