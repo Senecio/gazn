@@ -5,6 +5,8 @@ var MsgLogin = { }
 
 var async = require('async');
 
+var MinuteToMicroSecond = 60000;
+
 MsgLogin.interest = "login"
 MsgLogin.Process = function(socket, message) {
     GameLog("Process login");
@@ -47,15 +49,25 @@ MsgLogin.Success = function(socket, results) {
     var userId = user.id;
     socket.userId = userId;
     
+    var nowTime = (new Date()).getTime();
+    
     // 判断如果没有game数据,那么为新用户
     // 然后初始化新用户game数据.
     mysql.RunSP("InitDataForNewUser", [userId], function(results, fields) {
         var rs0 = results[0][0];
         if (rs0.out_value < 0) {
             // 初始化过了
-            User.SendAllBaseData(socket);
-            var msg = JSON.stringify({type : "loginSuccess"});
-            socket.send(msg);
+            Disaster.Trigger(userId, function() {
+                User.SendAllBaseData(socket);
+                var msg = JSON.stringify({type : "loginSuccess"});
+                socket.send(msg);
+                // 更新登录时间
+                User.UpdateLoginTime(userId, nowTime)
+                // 发送邻居信息
+                User.GetNeighbourList(userId, function(results, fields) {
+                     socket.send(JSON.stringify({ type : "neighbourList", list : results }));
+                });
+            });
         }else {
             async.parallel([
                 function(callback){
@@ -79,6 +91,13 @@ MsgLogin.Success = function(socket, results) {
                         User.SendAllBaseData(socket);
                         var msg = JSON.stringify({type : "loginSuccess"});
                         socket.send(msg);
+                        // 更新登录时间
+                        User.UpdateLoginTime(userId, nowTime)
+                        // 发送邻居信息
+                        User.GetNeighbourList(userId, function(results, fields) {
+                            GameLog(JSON.parse(results));
+                            socket.send({ type : "neighbourList", list : results });
+                        });
                     }
                 }
             );

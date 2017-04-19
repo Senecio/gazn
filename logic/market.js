@@ -7,7 +7,7 @@ function Market() {
 
 }
 
-// ÂôÎïÆ·
+// å–ç‰©å“
 Market.prototype.SellItem = function(userId, type, itemId, number, callback) {
     
 }

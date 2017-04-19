@@ -5,6 +5,7 @@
 var MsgHarvest = { }
 
 var MinuteToMicroSecond = 60000;
+var HourToMinute = 60;
 
 var async = require('async');
 
@@ -38,6 +39,10 @@ MsgHarvest.Process = function(socket, message) {
                 return;
             }
             
+            var disasterCfg = table.GetEntry("disaster", seedCfg.disasterId);
+            if (disasterCfg === null)
+                return;
+            
             var reduceTime = 0;
             if (typeof land.reduceTime !== 'undefined') {
                 for (var i = 0; i < land.reduceTime.length; ++i) {
@@ -51,10 +56,21 @@ MsgHarvest.Process = function(socket, message) {
                 return;
             }
             
-            // 获得百分之80% + 20%随机获得;
+            var cast = 0;
+            if (typeof land.disasterTime !== 'undefined' && 
+                typeof land.clearDisasterTime !== 'undefined' &&
+                land.clearDisasterTime > land.disasterTime &&
+                (land.disasterType === 1 || land.disasterType === 3))
+            {
+                var t = land.clearDisasterTime - land.disasterTime;
+                var d = Math.floor((t / MinuteToMicroSecond) / HourToMinute); 
+                cast = d * disasterCfg.effect1;
+                cast = Math.min(cast, disasterCfg.maxEffect1);
+            }
+            
             var fruitId = seedCfg.id;
-            var cast = Math.floor(seedCfg.output * 0.2);
-            var get = seedCfg.output - Math.floor( Math.random() * cast );
+            var cast = Math.floor(seedCfg.output * cast);
+            var get = seedCfg.output - cast;
             var kinds = 2;  //果实
 
             async.parallel([

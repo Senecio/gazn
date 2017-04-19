@@ -5,12 +5,12 @@ function User() {
 
 }
 
-// ³õÊ¼»¯ÎªĞÂÓÃ»§
+// åˆå§‹åŒ–ä¸ºæ–°ç”¨æˆ·
 User.prototype.InitForNewUser = function(userId) {
 
 }
 
-// ¸üĞÂ½ğ±Ò
+// æ›´æ–°é‡‘å¸
 User.prototype.UpdateMoney = function(userId, money, callback) {
     var cmd = "UPDATE `farm_user` SET `money`=? WHERE `id`=?";
     mysql.Query2(cmd, [money, userId], function (results, fields) {
@@ -18,7 +18,7 @@ User.prototype.UpdateMoney = function(userId, money, callback) {
     });
 }
 
-// ¸üĞÂ¾­Ñé
+// æ›´æ–°ç»éªŒ
 User.prototype.UpdateExperience = function(userId, experience, callback) {
     var cmd = "UPDATE `farm_user` SET `experience`=? WHERE `id`=?";
     mysql.Query2(cmd, [experience, userId], function (results, fields) {
@@ -26,7 +26,7 @@ User.prototype.UpdateExperience = function(userId, experience, callback) {
     });
 }
 
-// ¸üĞÂÇ®ºÍ¾­Ñé
+// æ›´æ–°é’±å’Œç»éªŒ
 User.prototype.UpdateMoneyAndExperience = function(userId, money, experience, callback) {
     var cmd = "UPDATE `farm_user` SET `money`=?,`experience`=? WHERE `id`=?";
     mysql.Query2(cmd, [money, experience, userId], function (results, fields) {
@@ -34,7 +34,15 @@ User.prototype.UpdateMoneyAndExperience = function(userId, money, experience, ca
     });
 }
 
-// »ñµÃµÈ¼¶
+// æ›´æ–°ç™»å½•æ—¶é—´
+User.prototype.UpdateLoginTime = function(userId, time, callback) {
+    var cmd = "UPDATE `farm_user` SET `logintime`=? WHERE `id`=?";
+    mysql.Query2(cmd, [time, userId], function (results, fields) {
+        if (callback) callback(true);
+    });
+}
+
+// è·å¾—ç­‰çº§
 User.prototype.GetLevel = function(experience) {
     var level = 1;
     if (experience > 0) {
@@ -43,12 +51,12 @@ User.prototype.GetLevel = function(experience) {
     return level;
 }
 
-// »ñµÃµÈ¼¶¾­Ñé
+// è·å¾—ç­‰çº§ç»éªŒ
 User.prototype.GetLevelExp = function(experience) {
     return experience % 200;
 }
 
-// µÇÂ½ºóµÄËùÓĞĞèÒªÊı¾İ
+// ç™»é™†åçš„æ‰€æœ‰éœ€è¦æ•°æ®
 User.prototype.SendAllBaseData = function(socket, callback) {
     var userId = socket.userId;
     var cmd = "SELECT t1.username,t1.money,t1.experience,t1.vip,t1.tq,t2.lands,t2.package FROM farm_user t1 LEFT JOIN farm_game t2 ON t1.id=t2.userid WHERE t1.id=?";
@@ -58,8 +66,9 @@ User.prototype.SendAllBaseData = function(socket, callback) {
             return;
         }else {
             var user = results[0];
+            var lands = user.lands;
             var obj = { type : "userBaseData", id : userId, username : user.username, 
-                money : user.money, experience : user.experience, vip : user.vip, lands : user.lands, package : user.package };
+                money : user.money, experience : user.experience, vip : user.vip, lands : lands, package : user.package };
             var msg = JSON.stringify(obj);
             socket.send(msg);
             if (callback) callback(true);
@@ -67,7 +76,34 @@ User.prototype.SendAllBaseData = function(socket, callback) {
     });
 }
 
-// Êı¾İÍ¬²½
+User.prototype.GetNeighbourList = function(userId, callback) {
+    var cmd = "SELECT `id`, `username`, `experience` FROM `farm_user` WHERE `id`<>? ORDER BY `logintime` DESC LIMIT 20";
+    mysql.Query2(cmd, [userId], function(results, fields){
+        callback(results, fields);
+    });
+}
+
+// è®¿é—®é‚»å±…çš„å¿…é¡»æ•°æ® 
+User.prototype.SendVisitBaseData = function(socket, whoId, callback) {
+    var userId = whoId;
+    var cmd = "SELECT t1.username,t1.money,t1.experience,t1.vip,t1.tq,t2.lands FROM farm_user t1 LEFT JOIN farm_game t2 ON t1.id=t2.userid WHERE t1.id=?";
+    mysql.Query2(cmd, [userId], function (results, fields) {
+        if (results.length === 0) {
+            if (callback) callback(false);
+            return;
+        }else {
+            var user = results[0];
+            var lands = user.lands;
+            var obj = { type : "visitBaseData", id : userId, username : user.username, 
+                money : user.money, experience : user.experience, vip : user.vip, lands : lands };
+            var msg = JSON.stringify(obj);
+            socket.send(msg);
+            if (callback) callback(true);
+        }
+    });
+}
+
+// æ•°æ®åŒæ­¥
 User.prototype.SendDataSync = function(socket, dataFields, callback) {
     var userId = socket.userId;
     
@@ -109,6 +145,7 @@ User.prototype.SendDataSync = function(socket, dataFields, callback) {
         }else {
             var user = results[0];
             var obj = { type : "userDataSync" };
+            var lands, land;
             for (var i = 0; i < dataFields.length; i++) {
                 if (dataFields[i] === 'money') {
                     obj['money'] = user.money;

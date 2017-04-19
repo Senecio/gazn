@@ -48,23 +48,9 @@ MsgManure.Process = function(socket, message) {
                 return;
             }
             
-            var now = (new Date()).getTime();
-            if (now > (land.sowTime + seedCfg.time.amount * MinuteToMicroSecond)) {
-                MsgHandler.ErrorResponse(socket, 14); // 植物已经成熟
+            var disasterCfg = table.GetEntry("disaster", seedCfg.disasterId);
+            if (disasterCfg === null)
                 return;
-            }
-            
-            var reduceTime = 0;
-            if (typeof land.reduceTime !== 'undefined') {
-                for (var i = 0; i < land.reduceTime.length; ++i) {
-                    reduceTime += land.reduceTime[i];
-                }
-                
-                if (now > (land.sowTime + (seedCfg.time.amount - reduceTime) * MinuteToMicroSecond)) {
-                    MsgHandler.ErrorResponse(socket, 14); // 植物已经成熟
-                    return;
-                }
-            }
             
             var package = JSON.parse(results[0].package);
             var kinds = 1;  //道具
@@ -83,32 +69,25 @@ MsgManure.Process = function(socket, message) {
                 MsgHandler.ErrorResponse(socket, 15); // 道具类型必须是化肥!
                 return;
             }
-
-            var remaining = seedCfg.time.amount*MinuteToMicroSecond - (now - land.sowTime);
+            
             if (typeof land.reduceTime === 'undefined') {
                 land.reduceTime = new Array(0,0,0);
-            }else {
-                remaining -= reduceTime*MinuteToMicroSecond;
             }
-
-            for (var j = seedCfg.time.part.length - 1; j >= 0; --j) {
-                if ( remaining > seedCfg.time.part[j]*MinuteToMicroSecond) {
-                    remaining -= seedCfg.time.part[j]*MinuteToMicroSecond;
-                }else {
-                
-                    if (propCfg.type === enum_huafei && land.reduceTime[j] !== 0) {
-                        MsgHandler.ErrorResponse(socket, 16);  //只能每阶段施一次肥!
-                        return;
-                    }
-                
-                    if (propCfg.data*MinuteToMicroSecond > remaining) {
-                        land.reduceTime[j] += Math.floor(remaining/MinuteToMicroSecond);
-                    } else {
-                        land.reduceTime[j] += propCfg.data;
-                    }
-                    break;
-                }
+            
+            if (propCfg.type === enum_huafei && land.reduceTime[j] !== 0) {
+                MsgHandler.ErrorResponse(socket, 16);  //只能每阶段施一次肥!
+                return;
             }
+            
+            var nowTime = (new Date()).getTime();
+            var disasterTime = (typeof land.disasterTime !== 'undefined' && land.disasterType === 2 || land.disasterType === 3) ? land.disasterTime : null;
+            if (Lands.IsMatured(land.reduceTime, nowTime, land.sowTime, disasterTime, seedCfg.time.part, disasterCfg.effect2, land.clearDisasterTime)) {
+                MsgHandler.ErrorResponse(socket, 14); // 植物已经成熟
+                return;
+            }
+            
+            // 施肥
+            MsgManure.Do(land.reduceTime, propCfg.data, nowTime, land.sowTime, disasterTime, seedCfg.time.part, disasterCfg.effect2, land.clearDisasterTime);
 
             async.parallel([
                 function(callback){
@@ -136,6 +115,25 @@ MsgManure.Process = function(socket, message) {
             );           
         }
     });
+}
+
+MsgManure.Do = function(reduceMinuteArray, reduceMinute, nowTime, sowTime, disasterTime, timeParts, effectParent, clearDisasterTime) {
+    var incArray = [0,0,0];
+    if (typeof disasterTime !== 'undefined' && disasterTime) {
+        incArray = Disaster.GetPart(sowTime, disasterTime, timeParts, effectParent, clearDisasterTime);
+    }
+
+    var a = Math.floor((nowTime - sowTime) / MinuteToMicroSecond);
+    var c = 0;
+    var i;
+    for (i = 0; i < 3; ++i) {
+        c += (timeParts[i] - reduceMinuteArray[i] + incArray[i]);
+        if (c > a) { c -= a; break; }
+    }
+    
+    if (i < 3) {
+        reduceMinuteArray[i] += Math.min(c, reduceMinute);
+    }
 }
 
 // 施肥成功

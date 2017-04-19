@@ -14,7 +14,7 @@ Package.prototype.InitForNewUser = function(userId, callback) {
     });
 }
 
-// Ìí¼ÓĞÂÎïÆ·
+// æ·»åŠ æ–°ç‰©å“
 Package.prototype.AddNewItem = function(userId, kinds, itemId, number, callback) {
     var cmd = "SELECT `package`  FROM `farm_game` WHERE `userId`=?";
     mysql.Query2(cmd, [userId], function (results, fields) {
@@ -29,14 +29,14 @@ Package.prototype.AddNewItem = function(userId, kinds, itemId, number, callback)
             else {
                 items[kinds][itemId] += number;
             }
-            // ¸üĞÂÊı¾İ
+            // æ›´æ–°æ•°æ®
             var itemsJson = JSON.stringify(items);
             mysql.Query2(updateSql, [itemsJson, userId], function(results, fields) { if (callback) callback(true); });
         }
     });
 }
 
-// Ê¹ÓÃÎïÆ·
+// ä½¿ç”¨ç‰©å“
 Package.prototype.UseItem = function(userId, kinds, itemId, number, callback) {
     var cmd = "SELECT `package`  FROM `farm_game` WHERE `userId`=?";
     mysql.Query2(cmd, [userId], function (results, fields) {
@@ -51,7 +51,7 @@ Package.prototype.UseItem = function(userId, kinds, itemId, number, callback) {
                 }else {
                     items[kinds][itemId] = 0;
                 }
-                // ¸üĞÂÊı¾İ
+                // æ›´æ–°æ•°æ®
                 var itemsJson = JSON.stringify(items);
                 mysql.Query2(updateSql, [itemsJson, userId], function(results, fields) { if (callback) callback(true); });
             }

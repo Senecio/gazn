@@ -4,11 +4,20 @@ if(typeof module !== 'undefined')
 var updateSql = "UPDATE `farm_game` set `lands`=? where `userId`=?";
 var selectSql = "SELECT `lands` FROM `farm_game` WHERE `userId`=?";
 
+var MinuteToMicroSecond = 60000;
+var HourToMinute = 60;
+
 function Lands() {
 
 }
 
-// Ê±ºò¿ÉÒÔ²¥ÖÖ
+// state : çŠ¶æ€  0ç©ºé—², 1ç§æ¤, 2æˆç†Ÿ, 3æ”¶è·
+Lands.prototype.enum_landsState_idle = 0;
+Lands.prototype.enum_landsState_grow = 1;
+Lands.prototype.enum_landsState_mature = 2;
+Lands.prototype.eunm_landsState_harvested = 3;
+
+// æ˜¯å¦å¯ä»¥æ’­ç§æŒ‡å®šç§å­
 Lands.prototype.CanSowSeed = function(landsLevel, seedId) {
     var landsTab = table['landsLevel'];
     for (var i = 0; i < landsLevel && i < 6; ++i) {
@@ -20,27 +29,57 @@ Lands.prototype.CanSowSeed = function(landsLevel, seedId) {
     return false;
 }
 
-Lands.prototype.enum_landsState_idle = 0;
-Lands.prototype.enum_landsState_grow = 1;
-Lands.prototype.enum_landsState_mature = 2;
-Lands.prototype.eunm_landsState_harvested = 3;
 
-// state : ×´Ì¬  0¿ÕÏĞ,1ÖÖÖ²,2ÒÑÊÕ¸î
-// seedId : Å©×÷Îï
-// sowTime : ²¥ÖÖÊ±¼ä
-// reduceTime[,,] : ¼õÃâÊ±¼ä 
+Lands.prototype.IsMatured = function(reduceMinuteArray, nowTime, sowTime, disasterTime, timeParts, effectParent, clearDisasterTime)
+{
+    var g = Math.floor((nowTime - sowTime) / MinuteToMicroSecond); 
+    var a = g;
+    //var info = ["å‘èŠ½","å¼€èŠ±","ç»“æœ"];
+    
+    var incArray = [0,0,0];
+    if (typeof disasterTime !== 'undefined' && disasterTime) {
+        incArray = Disaster.GetPart(sowTime, disasterTime, timeParts, effectParent, clearDisasterTime);
+    }
+    
+    for (var i = 0; i < 3; ++i) {
+        if (timeParts[i] + incArray[i] > reduceMinuteArray[i] + a) {
+            //console.log("å‰©ä½™" + (timeParts[i] + incArray[i] - reduceMinuteArray[i] - a) +"åˆ†é’Ÿ" + info[i], "ç¾å®³"+incArray[i]+"åˆ†é’Ÿ", "å·²æˆé•¿"+g+"åˆ†é’Ÿ");
+            return false;
+        }else {
+            a = (reduceMinuteArray[i] + a) - (timeParts[i] + incArray[i]);
+        }
+    }
+    // console.log("å·²ç»æˆç†Ÿ!");
+    return true;
+}
 
-// ³õÊ¼»¯ÎªĞÂÓÃ»§
+// éšè—æœåŠ¡ç«¯ä¿¡æ¯
+Lands.prototype.HiddenServerSideInfo = function(strLands) {
+    var lands = JSON.parse(strLands);
+    var land;
+    for (var k = 0; k < lands.length; ++k) {
+        land = lands[k];
+        if (typeof land.clearDisasterTime !== 'undefined') {
+            delete land.disasterType;
+            delete land.disasterTime;
+            delete land.clearDisasterTime;
+        }
+    }
+    return JSON.stringify(lands);
+}
+
+// åˆå§‹åŒ–ä¸ºæ–°ç”¨æˆ·
 Lands.prototype.InitForNewUser = function(userId, callback) {
     var cmd = "UPDATE `farm_game` set `lands`=? , `landsLevel`=? where `userId`=?";
-    var items = '[{"state":0, "seedId":0, "sowTime":0 }]';
+    var now = (new Date()).getTime();
+    var items = '[{"state":0, "seedId":0, "sowTime":0, "disasterTime":' + now + '}]';
     var level = 1;
     mysql.Query2(cmd, [items, level, userId], function (results, fields) {
         if (callback) callback(true);
     });
 }
 
-// ²¥ÖÖ
+// æ’­ç§
 Lands.prototype.SowSeeds = function(userId, landIndex, seedId, callback) {
     mysql.Query2(selectSql, [userId], function (results, fields) {
         if (results.length === 0) {
@@ -52,14 +91,14 @@ Lands.prototype.SowSeeds = function(userId, landIndex, seedId, callback) {
             land.state = 1;
             land.seedId = seedId;
             land.sowTime = (new Date()).getTime();
-            // ¸üĞÂÊı¾İ
+            // æ›´æ–°æ•°æ®
             var landsJson = JSON.stringify(lands);
             mysql.Query2(updateSql, [landsJson, userId], function(results, fields) { if (callback) callback(true); });
         }
     });
 }
 
-// ÊÕ»ñ
+// æ”¶è·
 Lands.prototype.Harvest = function(userId, landIndex, callback) {
     mysql.Query2(selectSql, [userId], function (results, fields) {
         if (results.length === 0) {
@@ -69,14 +108,14 @@ Lands.prototype.Harvest = function(userId, landIndex, callback) {
             var lands = JSON.parse(results[0].lands);
             var land = lands[landIndex];
             land.state = 2;
-            // ¸üĞÂÊı¾İ
+            // æ›´æ–°æ•°æ®
             var landsJson = JSON.stringify(lands);
             mysql.Query2(updateSql, [landsJson, userId], function(results, fields) { if (callback) callback(true); });
         }
     });
 }
 
-// Ê©·Ê
+// æ–½è‚¥
 Lands.prototype.Manure = function(userId, landIndex, reduceTime, callback) {
     mysql.Query2(selectSql, [userId], function (results, fields) {
         if (results.length === 0) {
@@ -86,14 +125,14 @@ Lands.prototype.Manure = function(userId, landIndex, reduceTime, callback) {
             var lands = JSON.parse(results[0].lands);
             var land = lands[landIndex];
             land['reduceTime'] = reduceTime;
-            // ¸üĞÂÊı¾İ
+            // æ›´æ–°æ•°æ®
             var landsJson = JSON.stringify(lands);
             mysql.Query2(updateSql, [landsJson, userId], function(results, fields) { if (callback) callback(true); });
         }
     });
 }
 
-// ·­µØ
+// ç¿»åœ°
 Lands.prototype.Reset = function(userId, landIndex, callback) {
     mysql.Query2(selectSql, [userId], function (results, fields) {
         if (results.length === 0) {
@@ -105,15 +144,17 @@ Lands.prototype.Reset = function(userId, landIndex, callback) {
             land.state = 0;
             land.seedId = 0;
             land.sowTime = 0;
+            delete land.disasterType;
+            delete land.clearDisasterTime;
             delete land.reduceTime;
-            // ¸üĞÂÊı¾İ
+            // æ›´æ–°æ•°æ®
             var landsJson = JSON.stringify(lands);
             mysql.Query2(updateSql, [landsJson, userId], function(results, fields) { if (callback) callback(true); });
         }
     });
 }
 
-//  ÍÁµØ½âËø
+//  åœŸåœ°è§£é”
 Lands.prototype.Unlock = function(userId, landIndex, callback) {
     mysql.Query2(selectSql, [userId], function (results, fields) {
         if (results.length === 0) {
@@ -121,18 +162,26 @@ Lands.prototype.Unlock = function(userId, landIndex, callback) {
             return;
         }else {
             var lands = JSON.parse(results[0].lands);
-            lands[landIndex] = {"state":0, "seedId":0, "sowTime":0 };
-            // ¸üĞÂÊı¾İ
+            var now = (new Date()).getTime();
+            lands[landIndex] = {"state":0, "seedId":0, "sowTime":0, 'disasterTime' : now };
+            // æ›´æ–°æ•°æ®
             var landsJson = JSON.stringify(lands);
             mysql.Query2(updateSql, [landsJson, userId], function(results, fields) { if (callback) callback(true); });
         }
     });
 }
 
-//  ÍÁµØÉı¼¶
+//  åœŸåœ°å‡çº§
 Lands.prototype.Upgrade = function(userId, landsLevel, callback) {
     var cmd = "UPDATE `farm_game` set `landsLevel`=? where `userId`=?";
     mysql.Query2(selectSql, [landsLevel , userId], function (results, fields) {
         if (callback) callback(true);
     });
+}
+
+//  åœŸåœ°å‡çº§
+Lands.prototype.Update = function(userId, lands, callback) {
+    // æ›´æ–°æ•°æ®
+    var landsJson = JSON.stringify(lands);
+    mysql.Query2(updateSql, [landsJson, userId], function(results, fields) { if (callback) callback(true); });
 }
