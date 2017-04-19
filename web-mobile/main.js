@@ -67,12 +67,7 @@
                 else if (settings.orientation === 'portrait') {
                     cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
                 }
-                // qq, wechat, baidu
-                /*cc.view.enableAutoFullScreen(
-                    cc.sys.browserType !== cc.sys.BROWSER_TYPE_BAIDU &&
-                    cc.sys.browserType !== cc.sys.BROWSER_TYPE_WECHAT &&
-                    cc.sys.browserType !== cc.sys.BROWSER_TYPE_MOBILE_QQ
-                );*/
+
             }
 
             // init assets
@@ -137,7 +132,7 @@
             jsList: jsList,
             groupList: settings.groupList,
             collisionMatrix: settings.collisionMatrix,
-            renderMode: 0
+            renderMode: 2
         };
 
         cc.game.run(option, onStart);
