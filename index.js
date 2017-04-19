@@ -22,6 +22,7 @@ var expressWs = require('express-ws')(app);
 User = new (require('./logic/user.js'))();
 Lands = new (require('./logic/lands.js'))();
 Package = new (require('./logic/package.js'))();
+Disaster = new (require('./logic/disaster.js'))();
 MsgHandler = require('./msgHandler.js');
 require('./handler/all.js');
 
