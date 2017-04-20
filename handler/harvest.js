@@ -16,7 +16,9 @@ MsgHarvest.Process = function(socket, message) {
     var userId = socket.userId;
     var landIndex = message.landIndex;
     
-    var cmd = "SELECT `lands` FROM `farm_game` WHERE `userId`=?";
+    
+    
+    var cmd = "SELECT t1.experience, t2.lands FROM `farm_user` t1 LEFT JOIN `farm_game` t2 ON t1.id=t2.userid  WHERE t1.id=?";
     mysql.Query2(cmd, [userId], function (results, fields) {
         if (results.length === 0) {
             GameLog("不存在!!!, 不可能, 角色或数据不存在?");
@@ -72,6 +74,8 @@ MsgHarvest.Process = function(socket, message) {
             var cast = Math.floor(seedCfg.output * cast);
             var get = seedCfg.output - cast;
             var kinds = 2;  //果实
+            var experience = results[0].experience;
+            var updateExperience = experience + seedCfg.harvestExp;
 
             async.parallel([
                 function(callback){
@@ -85,15 +89,21 @@ MsgHarvest.Process = function(socket, message) {
                     Lands.Harvest(userId, landIndex, function(rs) {
                         callback(null, rs);
                     });
+                },
+                function(callback) {
+                    // 添加经验
+                    User.UpdateExperience(userId, updateExperience, function(rs) {
+                        callback(null, rs);
+                    });
                 }],
                 // optional callback
                 function(err, results){
-                    if (results[0] !== true || results[1] !== true) {
+                    if (results[0] !== true || results[1] !== true || results[2] !== true) {
                         if (callback) callback(false, 444444);
                         throw "!!!!!!!![收割]错误的结果!!!!!!!!";
                     } else {
                         MsgHarvest.Success(socket);
-                        User.SendDataSync(socket, ['package','lands']);
+                        User.SendDataSync(socket, ['package','lands', 'experience']);
                     }
                 }
             );
