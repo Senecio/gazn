@@ -1,6 +1,8 @@
 
 var MsgRemovePlant = { }
 
+var async = require('async');
+
 MsgRemovePlant.interest = "removePlant"
 MsgRemovePlant.Process = function(socket, message) {
     GameLog("remove plant");
@@ -8,7 +10,7 @@ MsgRemovePlant.Process = function(socket, message) {
     var userId = socket.userId;
     var landIndex = message.landIndex;
     
-    var cmd = "SELECT `lands`  FROM `farm_game` WHERE `userId`=?";
+    var cmd = "SELECT t1.experience, t2.lands FROM `farm_user` t1 LEFT JOIN `farm_game` t2 ON t1.id=t2.userid  WHERE t1.id=?";
     mysql.Query2(cmd, [userId], function (results, fields)
     {
         if (results.length === 0) {
@@ -26,15 +28,33 @@ MsgRemovePlant.Process = function(socket, message) {
                 return;
             }
            
-            Lands.Reset(userId, landIndex, function(rs) {
-                if (rs !== true) {
+            var experience = results[0].experience;
+            var updateExperience = experience + seedCfg.clearExp;
+
+            async.parallel([
+                function(callback){
+                    // 更新土地信息.
+                    Lands.Reset(userId, landIndex, function(rs) {
+                        callback(null, rs);
+                    });
+                },
+                function(callback) {
+                    // 添加经验
+                    User.UpdateExperience(userId, updateExperience, function(rs) {
+                        callback(null, rs);
+                    });
+                }],
+                // optional callback
+                function(err, results){
+                    if (results[0] !== true || results[1] !== true) {
+                        if (callback) callback(false, 444444);
                         throw "!!!!!!!![铲除植物]错误的结果!!!!!!!!";
-                } else {
-                    // 通知成功
-                    MsgRemovePlant.Success(socket);
-                    User.SendDataSync(socket, ['lands']);
+                    } else {
+                        MsgRemovePlant.Success(socket);
+                        User.SendDataSync(socket, ['lands', 'experience']);
+                    }
                 }
-            });
+            );
         }
     });
 }
