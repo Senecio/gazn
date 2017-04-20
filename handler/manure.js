@@ -74,7 +74,7 @@ MsgManure.Process = function(socket, message) {
                 land.reduceTime = new Array(0,0,0);
             }
             
-            if (propCfg.type === enum_huafei)
+            if (propCfg.type === enum_huafei) {
                 for (var j = 0; j < 3; ++j) {
                     if (land.reduceTime[0] !== 0) {
                         MsgHandler.ErrorResponse(socket, 16);  //只能每阶段施一次肥!
