@@ -95,6 +95,7 @@ MsgLogin.Success = function(socket, results) {
                         User.UpdateLoginTime(userId, nowTime)
                         // 发送邻居信息
                         User.GetNeighbourList(userId, function(results, fields) {
+                            GameLog("GetNeighbourList", results);
                             GameLog(JSON.parse(results));
                             socket.send({ type : "neighbourList", list : results });
                         });
