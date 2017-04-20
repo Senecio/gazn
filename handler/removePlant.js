@@ -27,6 +27,12 @@ MsgRemovePlant.Process = function(socket, message) {
                 MsgHandler.ErrorResponse(socket, 12); // 土地还没有播种
                 return;
             }
+            
+            var seedCfg = table.GetEntry("plant", land.seedId);
+            if (seedCfg === null) {
+                GameLog("seedCfg === null, seedId =", land.seedId);
+                return;
+            }
            
             var experience = results[0].experience;
             var updateExperience = experience + seedCfg.clearExp;
