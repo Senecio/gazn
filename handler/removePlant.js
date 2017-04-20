@@ -28,6 +28,7 @@ MsgRemovePlant.Process = function(socket, message) {
                 return;
             }
             
+            var land = lands[landIndex];
             var seedCfg = table.GetEntry("plant", land.seedId);
             if (seedCfg === null) {
                 GameLog("seedCfg === null, seedId =", land.seedId);
