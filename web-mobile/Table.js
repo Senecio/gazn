@@ -26,9 +26,9 @@
         ],
         // 植物表
         'plant' : [
-            { id : 1, name : "植物1", buy : 100, fruit : { name : "果实1", price : 20 }, output : 15, minLevel:1, time:{amount:600, part:[200,200,200]}, disasterId : 1, sowExp:2, harvestExp:10, clearExp:2},
-            { id : 2, name : "植物2", buy : 120, fruit : { name : "果实2", price : 30 }, output : 15, minLevel:2, time:{amount:600, part:[200,200,200]}, disasterId : 1, sowExp:2, harvestExp:10, clearExp:2},
-            { id : 3, name : "植物3", buy : 140, fruit : { name : "果实3", price : 40 }, output : 15, minLevel:3, time:{amount:600, part:[200,200,200]}, disasterId : 1, sowExp:2, harvestExp:10, clearExp:2},
+            { id : 1, name : "植物1", buy : 100, fruit : { name : "果实1", price : 20 }, output : 15, minLevel:1, time:{amount:600, part:[200,200,200]}, disasterId : 1, sowExp:20, harvestExp:100, clearExp:20},
+            { id : 2, name : "植物2", buy : 120, fruit : { name : "果实2", price : 30 }, output : 15, minLevel:2, time:{amount:600, part:[200,200,200]}, disasterId : 1, sowExp:20, harvestExp:100, clearExp:20},
+            { id : 3, name : "植物3", buy : 140, fruit : { name : "果实3", price : 40 }, output : 15, minLevel:3, time:{amount:600, part:[200,200,200]}, disasterId : 1, sowExp:20, harvestExp:100, clearExp:20},
             { id : 4, name : "植物4", buy : 160, fruit : { name : "果实4", price : 60 }, output : 15, minLevel:4, time:{amount:660, part:[200,260,200]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
             { id : 5, name : "植物5", buy : 180, fruit : { name : "果实5", price : 80 }, output : 15, minLevel:5, time:{amount:660, part:[200,260,200]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
             { id : 6, name : "植物6", buy : 200, fruit : { name : "果实6", price : 100 }, output : 15, minLevel:6, time:{amount:660, part:[200,260,200]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
@@ -50,7 +50,12 @@
             { id : 1, name : "化肥1", type : 1, data : 120, desc : "每个阶段使用1次,减少2小时成熟时间", buy : 1000 },
             { id : 2, name : "化肥2", type : 1, data : 180, desc : "每个阶段使用1次,减少3小时成熟时间", buy : 1500 },
             { id : 3, name : "化肥3", type : 2, data : 120, desc : "每个阶段可多次使用,减少2小时成熟时间", buy : 2000 },
-            { id : 4, name : "化肥4", type : 2, data : 180, desc : "每个阶段可多次使用,减少3小时成熟时间", buy : 3000 }
+            { id : 4, name : "化肥4", type : 2, data : 180, desc : "每个阶段可多次使用,减少3小时成熟时间", buy : 3000 },
+            { id : 6, name : "1级营养液", type : 3, data : 0, desc : "升级2等级土地时使用", buy : 10 },
+            { id : 7, name : "2级营养液", type : 3, data : 0, desc : "升级3等级土地时使用", buy : 10 },
+            { id : 8, name : "3级营养液", type : 3, data : 0, desc : "升级4等级土地时使用", buy : 10 },
+            { id : 9, name : "4级营养液", type : 3, data : 0, desc : "升级5等级土地时使用", buy : 10 },
+            { id : 10, name : "5级营养液", type : 3, data : 0, desc : "升级6等级土地时使用", buy : 10 }
         ],
         // 土地等级表
         'landsLevel' : [
@@ -68,7 +73,7 @@
         // 商店
         'shop' : [
             { id : 1, name :"种子", sell:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]},
-            { id : 2, name :"道具", sell:[1,2,3,4]},
+            { id : 2, name :"道具", sell:[1,2,3,4,6,7,8,9,10]},
             { id : 3, name :"装饰", sell:[]}
         ],
         // 灾害  effect1 出虫(每小时减少收成的x%)  effect2  缺水(每小时增加x分钟的时间) effect 营养流失(前面两种效果叠加)

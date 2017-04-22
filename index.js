@@ -14,7 +14,7 @@ app.listen(process.env.LEANCLOUD_APP_PORT);
 
 GameLog = require('./Logger.js');
 config = require('./config.js');
-table = require('./Table.js');
+table = require('./web-mobile/Table.js');
 
 // 建立websocket
 var expressWs = require('express-ws')(app);

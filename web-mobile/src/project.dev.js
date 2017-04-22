@@ -1055,7 +1055,7 @@ cc.Class({
     },
 
     start: function start() {
-        GameSocket().Connect("gznc.leanapp.cn", 80);
+        GameSocket().Connect("localhost", 34443);
         GameEvent().OnEvent("connectedServer", this.OnConectServe, this);
         GameEvent().OnEvent("GoRegister", this.OnGoRegister, this);
         GameEvent().OnEvent("LoginSuccess", this.OnLoginSuccess, this);
