@@ -1,5 +1,6 @@
-// 数据表
+﻿// 数据表
 // modify by zyx
+// modify by wyx
 ; (function() {
 
     var Table = {
