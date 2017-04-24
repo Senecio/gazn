@@ -28,23 +28,23 @@
         ],
         // 植物表
         'plant' : [
-            { id : 1, name : "植物1", buy : 100, fruit : { name : "果实1", price : 20 }, output : 15, minLevel:1, time:{amount:600, part:[200,200,200]}, disasterId : 1, sowExp:20, harvestExp:100, clearExp:20},
-            { id : 2, name : "植物2", buy : 120, fruit : { name : "果实2", price : 30 }, output : 15, minLevel:2, time:{amount:600, part:[200,200,200]}, disasterId : 1, sowExp:20, harvestExp:100, clearExp:20},
-            { id : 3, name : "植物3", buy : 140, fruit : { name : "果实3", price : 40 }, output : 15, minLevel:3, time:{amount:600, part:[200,200,200]}, disasterId : 1, sowExp:20, harvestExp:100, clearExp:20},
-            { id : 4, name : "植物4", buy : 160, fruit : { name : "果实4", price : 60 }, output : 15, minLevel:4, time:{amount:660, part:[200,260,200]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
-            { id : 5, name : "植物5", buy : 180, fruit : { name : "果实5", price : 80 }, output : 15, minLevel:5, time:{amount:660, part:[200,260,200]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
-            { id : 6, name : "植物6", buy : 200, fruit : { name : "果实6", price : 100 }, output : 15, minLevel:6, time:{amount:660, part:[200,260,200]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
-            { id : 7, name : "植物7", buy : 220, fruit : { name : "果实7", price : 120 }, output : 15, minLevel:7, time:{amount:720, part:[200,260,260]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
-            { id : 8, name : "植物8", buy : 240, fruit : { name : "果实8", price : 140 }, output : 15, minLevel:8, time:{amount:720, part:[200,260,260]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
-            { id : 9, name : "植物9", buy : 260, fruit : { name : "果实9", price : 160 }, output : 15, minLevel:9, time:{amount:720, part:[200,260,260]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
-            { id : 10, name : "植物10", buy : 280, fruit : { name : "果实10", price : 180 }, output : 20, minLevel:10, time:{amount:780, part:[260,260,260]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
-            { id : 11, name : "植物11", buy : 300, fruit : { name : "果实11", price : 200 }, output : 20, minLevel:11, time:{amount:780, part:[260,260,260]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
-            { id : 12, name : "植物12", buy : 320, fruit : { name : "果实12", price : 220 }, output : 20, minLevel:12, time:{amount:780, part:[260,260,260]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
-            { id : 13, name : "植物13", buy : 340, fruit : { name : "果实13", price : 240 }, output : 20, minLevel:13, time:{amount:900, part:[300,300,300]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
-            { id : 14, name : "植物14", buy : 360, fruit : { name : "果实14", price : 260 }, output : 20, minLevel:14, time:{amount:900, part:[300,300,300]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
-            { id : 15, name : "植物15", buy : 380, fruit : { name : "果实15", price : 270 }, output : 20, minLevel:15, time:{amount:900, part:[300,300,300]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
-            { id : 16, name : "植物16", buy : 400, fruit : { name : "果实16", price : 280 }, output : 20, minLevel:16, time:{amount:1440, part:[480,480,480]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2},
-            { id : 17, name : "植物17", buy : 420, fruit : { name : "果实17", price : 290 }, output : 20, minLevel:17, time:{amount:1440, part:[480,480,480]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2},
+            { id : 1, name : "百合", buy : 50, fruit : { name : "百合", price : 1 }, output : 100, minLevel:1, time:{amount:30, part:[10,10,10]}, disasterId : 1, sowExp:50, harvestExp:100, clearExp:50},
+            { id : 2, name : "当归", buy : 100, fruit : { name : "当归", price : 2 }, output : 100, minLevel:5, time:{amount:60, part:[20,20,20]}, disasterId : 1, sowExp:50, harvestExp:105, clearExp:50},
+            { id : 3, name : "枸杞", buy : 150, fruit : { name : "枸杞", price : 3 }, output : 100, minLevel:9, time:{amount:90, part:[30,30,30]}, disasterId : 1, sowExp:50, harvestExp:110, clearExp:50},
+            { id : 4, name : "红参", buy : 160, fruit : { name : "红参", price : 60 }, output : 15, minLevel:4, time:{amount:660, part:[200,260,200]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
+            { id : 5, name : "红枣", buy : 180, fruit : { name : "红枣", price : 80 }, output : 15, minLevel:5, time:{amount:660, part:[200,260,200]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
+            { id : 6, name : "灵芝", buy : 200, fruit : { name : "灵芝", price : 100 }, output : 15, minLevel:6, time:{amount:660, part:[200,260,200]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
+            { id : 7, name : "人参", buy : 220, fruit : { name : "人参", price : 120 }, output : 15, minLevel:7, time:{amount:720, part:[200,260,260]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
+            { id : 8, name : "沙参", buy : 240, fruit : { name : "沙参", price : 140 }, output : 15, minLevel:8, time:{amount:720, part:[200,260,260]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
+            { id : 9, name : "铁皮石斛", buy : 260, fruit : { name : "铁皮石斛", price : 160 }, output : 15, minLevel:9, time:{amount:720, part:[200,260,260]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
+            { id : 10, name : "玉竹", buy : 280, fruit : { name : "玉竹", price : 180 }, output : 20, minLevel:10, time:{amount:780, part:[260,260,260]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
+            { id : 11, name : "党参", buy : 300, fruit : { name : "党参", price : 200 }, output : 20, minLevel:11, time:{amount:780, part:[260,260,260]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
+            { id : 12, name : "黄芪", buy : 320, fruit : { name : "黄芪", price : 220 }, output : 20, minLevel:12, time:{amount:780, part:[260,260,260]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
+            { id : 13, name : "莲子", buy : 340, fruit : { name : "莲子", price : 240 }, output : 20, minLevel:13, time:{amount:900, part:[300,300,300]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
+            { id : 14, name : "玫瑰", buy : 360, fruit : { name : "玫瑰", price : 260 }, output : 20, minLevel:14, time:{amount:900, part:[300,300,300]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
+            { id : 15, name : "牛大力", buy : 380, fruit : { name : "牛大力", price : 270 }, output : 20, minLevel:15, time:{amount:900, part:[300,300,300]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
+            { id : 16, name : "山药", buy : 400, fruit : { name : "山药", price : 280 }, output : 20, minLevel:16, time:{amount:1440, part:[480,480,480]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2},
+            { id : 17, name : "五指毛桃", buy : 420, fruit : { name : "五指毛桃", price : 290 }, output : 20, minLevel:17, time:{amount:1440, part:[480,480,480]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2},
             { id : 18, name : "植物18", buy : 440, fruit : { name : "果实18", price : 300 }, output : 20, minLevel:18, time:{amount:1440, part:[480,480,480]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2}
         ],
         // 道具
@@ -70,11 +70,11 @@
         ],
         //  土地解锁表
         'unlockLands' : [
-            { id : 1, needMoney : [1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000], minLevel : [1,2,3,4,5,6,7,8,9,10,11,12] }
+            { id : 1, needMoney : [1000,150,300,450,600,1200,1600,2000,2700,4800,5200,5500], minLevel : [1,2,3,4,5,6,7,8,9,10,11,12] }
         ],
         // 商店
         'shop' : [
-            { id : 1, name :"种子", sell:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]},
+            { id : 1, name :"种子", sell:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]},
             { id : 2, name :"道具", sell:[1,2,3,4,6,7,8,9,10]},
             { id : 3, name :"装饰", sell:[]}
         ],
