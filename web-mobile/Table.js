@@ -24,28 +24,32 @@
             { id : 16, description : "只能每阶段施一次肥!" },
             { id : 17, description : "果实不足!"},
             { id : 18, description : "植物尚未发生灾害!" },
-            { id : 19, description : "请求过于频繁!" }
+            { id : 19, description : "请求过于频繁!" },
+            { id : 20, description : "尚未成为好友!" },
+            { id : 21, description : "已经成为好友!" },
+            { id : 22, description : "手下留情吧,已无可偷取!" },
+            { id : 23, description : "手下留情吧,劳动光荣!" }
         ],
         // 植物表
         'plant' : [
-            { id : 1, name : "百合", buy : 50, fruit : { name : "百合", price : 1 }, output : 100, minLevel:1, time:{amount:30, part:[10,10,10],images:["zhongZi","1_2","1_3"]}, disasterId : 1, sowExp:50, harvestExp:100, clearExp:50},
-            { id : 2, name : "当归", buy : 100, fruit : { name : "当归", price : 2 }, output : 100, minLevel:5, time:{amount:60, part:[20,20,20],images:["zhongZi","2_2","2_3"]}, disasterId : 1, sowExp:50, harvestExp:105, clearExp:50},
-            { id : 3, name : "枸杞", buy : 150, fruit : { name : "枸杞", price : 3 }, output : 100, minLevel:9, time:{amount:90, part:[30,30,30],images:["zhongZi","3_2","3_3"]}, disasterId : 1, sowExp:50, harvestExp:110, clearExp:50},
-            { id : 4, name : "红参", buy : 160, fruit : { name : "红参", price : 60 }, output : 15, minLevel:4, time:{amount:660, part:[200,260,200],images:["zhongZi","4_2","4_3"]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
-            { id : 5, name : "红枣", buy : 180, fruit : { name : "红枣", price : 80 }, output : 15, minLevel:5, time:{amount:660, part:[200,260,200],images:["zhongZi","5_2","5_3"]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
-            { id : 6, name : "灵芝", buy : 200, fruit : { name : "灵芝", price : 100 }, output : 15, minLevel:6, time:{amount:660, part:[200,260,200],images:["zhongZi","6_2","6_3"]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
-            { id : 7, name : "人参", buy : 220, fruit : { name : "人参", price : 120 }, output : 15, minLevel:7, time:{amount:720, part:[200,260,260],images:["zhongZi","7_2","7_3"]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
-            { id : 8, name : "沙参", buy : 240, fruit : { name : "沙参", price : 140 }, output : 15, minLevel:8, time:{amount:720, part:[200,260,260],images:["zhongZi","8_2","8_3"]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
-            { id : 9, name : "铁皮石斛", buy : 260, fruit : { name : "铁皮石斛", price : 160 }, output : 15, minLevel:9, time:{amount:720, part:[200,260,260],images:["zhongZi","9_2","9_3"]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
-            { id : 10, name : "玉竹", buy : 280, fruit : { name : "玉竹", price : 180 }, output : 20, minLevel:10, time:{amount:780, part:[260,260,260],images:["zhongZi","10_2","10_3"]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
-            { id : 11, name : "党参", buy : 300, fruit : { name : "党参", price : 200 }, output : 20, minLevel:11, time:{amount:780, part:[260,260,260],images:["zhongZi","11_2","11_3"]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
-            { id : 12, name : "黄芪", buy : 320, fruit : { name : "黄芪", price : 220 }, output : 20, minLevel:12, time:{amount:780, part:[260,260,260],images:["zhongZi","12_2","12_3"]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
-            { id : 13, name : "莲子", buy : 340, fruit : { name : "莲子", price : 240 }, output : 20, minLevel:13, time:{amount:900, part:[300,300,300],images:["zhongZi","13_2","13_3"]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
-            { id : 14, name : "玫瑰", buy : 360, fruit : { name : "玫瑰", price : 260 }, output : 20, minLevel:14, time:{amount:900, part:[300,300,300],images:["zhongZi","14_2","14_3"]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
-            { id : 15, name : "牛大力", buy : 380, fruit : { name : "牛大力", price : 270 }, output : 20, minLevel:15, time:{amount:900, part:[300,300,300],images:["zhongZi","15_2","15_3"]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
-            { id : 16, name : "山药", buy : 400, fruit : { name : "山药", price : 280 }, output : 20, minLevel:16, time:{amount:1440, part:[480,480,480],images:["zhongZi","16_2","16_3"]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2},
-            { id : 17, name : "五指毛桃", buy : 420, fruit : { name : "五指毛桃", price : 290 }, output : 20, minLevel:17, time:{amount:1440, part:[480,480,480],images:["zhongZi","17_2","17_3"]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2},
-            { id : 18, name : "植物18", buy : 440, fruit : { name : "果实18", price : 300 }, output : 20, minLevel:18, time:{amount:1440, part:[480,480,480],images:["zhongZi","11_2","11_3"]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2}
+            { id : 1, name : "百合", buy : 50, fruit : { name : "百合", price : 1 }, output : 100, minLevel:1, time:{amount:30, part:[10,10,10],images:["zhongZi","1_2","1_3","canliu"]}, disasterId : 1, sowExp:50, harvestExp:100, clearExp:50},
+            { id : 2, name : "当归", buy : 100, fruit : { name : "当归", price : 2 }, output : 100, minLevel:5, time:{amount:60, part:[20,20,20],images:["zhongZi","2_2","2_3","canliu"]}, disasterId : 1, sowExp:50, harvestExp:105, clearExp:50},
+            { id : 3, name : "枸杞", buy : 150, fruit : { name : "枸杞", price : 3 }, output : 100, minLevel:9, time:{amount:90, part:[30,30,30],images:["zhongZi","3_2","3_3","canliu"]}, disasterId : 1, sowExp:50, harvestExp:110, clearExp:50},
+            { id : 4, name : "红参", buy : 160, fruit : { name : "红参", price : 60 }, output : 15, minLevel:4, time:{amount:660, part:[200,260,200],images:["zhongZi","4_2","4_3","canliu"]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
+            { id : 5, name : "红枣", buy : 180, fruit : { name : "红枣", price : 80 }, output : 15, minLevel:5, time:{amount:660, part:[200,260,200],images:["zhongZi","5_2","5_3","canliu"]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
+            { id : 6, name : "灵芝", buy : 200, fruit : { name : "灵芝", price : 100 }, output : 15, minLevel:6, time:{amount:660, part:[200,260,200],images:["zhongZi","6_2","6_3","canliu"]}, disasterId : 1, sowExp:2, harvestExp:12, clearExp:2},
+            { id : 7, name : "人参", buy : 220, fruit : { name : "人参", price : 120 }, output : 15, minLevel:7, time:{amount:720, part:[200,260,260],images:["zhongZi","7_2","7_3","canliu"]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
+            { id : 8, name : "沙参", buy : 240, fruit : { name : "沙参", price : 140 }, output : 15, minLevel:8, time:{amount:720, part:[200,260,260],images:["zhongZi","8_2","8_3","canliu"]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
+            { id : 9, name : "铁皮石斛", buy : 260, fruit : { name : "铁皮石斛", price : 160 }, output : 15, minLevel:9, time:{amount:720, part:[200,260,260],images:["zhongZi","9_2","9_3","canliu"]}, disasterId : 1, sowExp:2, harvestExp:14, clearExp:2},
+            { id : 10, name : "玉竹", buy : 280, fruit : { name : "玉竹", price : 180 }, output : 20, minLevel:10, time:{amount:780, part:[260,260,260],images:["zhongZi","10_2","10_3","canliu"]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
+            { id : 11, name : "党参", buy : 300, fruit : { name : "党参", price : 200 }, output : 20, minLevel:11, time:{amount:780, part:[260,260,260],images:["zhongZi","11_2","11_3","canliu"]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
+            { id : 12, name : "黄芪", buy : 320, fruit : { name : "黄芪", price : 220 }, output : 20, minLevel:12, time:{amount:780, part:[260,260,260],images:["zhongZi","12_2","12_3","canliu"]}, disasterId : 1, sowExp:2, harvestExp:16, clearExp:2},
+            { id : 13, name : "莲子", buy : 340, fruit : { name : "莲子", price : 240 }, output : 20, minLevel:13, time:{amount:900, part:[300,300,300],images:["zhongZi","13_2","13_3","canliu"]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
+            { id : 14, name : "玫瑰", buy : 360, fruit : { name : "玫瑰", price : 260 }, output : 20, minLevel:14, time:{amount:900, part:[300,300,300],images:["zhongZi","14_2","14_3","canliu"]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
+            { id : 15, name : "牛大力", buy : 380, fruit : { name : "牛大力", price : 270 }, output : 20, minLevel:15, time:{amount:900, part:[300,300,300],images:["zhongZi","15_2","15_3","canliu"]}, disasterId : 1, sowExp:3, harvestExp:16, clearExp:2},
+            { id : 16, name : "山药", buy : 400, fruit : { name : "山药", price : 280 }, output : 20, minLevel:16, time:{amount:1440, part:[480,480,480],images:["zhongZi","16_2","16_3","canliu"]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2},
+            { id : 17, name : "五指毛桃", buy : 420, fruit : { name : "五指毛桃", price : 290 }, output : 20, minLevel:17, time:{amount:1440, part:[480,480,480],images:["zhongZi","17_2","17_3","canliu"]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2},
+            { id : 18, name : "植物18", buy : 440, fruit : { name : "果实18", price : 300 }, output : 20, minLevel:18, time:{amount:1440, part:[480,480,480],images:["zhongZi","11_2","11_3","canliu"]}, disasterId : 1, sowExp:3, harvestExp:18, clearExp:2}
         ],
         // 道具
         'property' : [
@@ -59,6 +63,16 @@
             { id : 9, name : "4级营养液", type : 3, data : 0, desc : "升级5等级土地时使用", buy : 10, imagPath : "prop/yingyangye"},
             { id : 10, name : "5级营养液", type : 3, data : 0, desc : "升级6等级土地时使用", buy : 10, imagPath : "prop/yingyangye"}
         ],
+		//宠物
+		'pet' : [
+			{id : 1, name : "宠物1", buy : [500,1500,3000], data : [0.3,0.1], desc : "宠物功能说明1", headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
+			{id : 2, name : "宠物2", buy : [600,1800,3600], data : [0.4,0.12], desc : "宠物功能说明2", headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
+			{id : 3, name : "宠物3", buy : [700,2100,4200], data : [0.5,0.14], desc : "宠物功能说明3", headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
+			{id : 4, name : "宠物4", buy : [800,2400,4800], data : [0.6,0.16], desc : "宠物功能说明4", headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
+			{id : 5, name : "宠物5", buy : [900,2700,5400], data : [0.7,0.18], desc : "宠物功能说明5", headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
+			{id : 6, name : "宠物6", buy : [1000,3000,6000], data : [0.8,0.2], desc : "宠物功能说明6", headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
+			{id : 7, name : "宠物7", buy : [1100,3300,6600], data : [0.9,0.22], desc : "宠物功能说明7", headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"}
+		],
         // 土地等级表
         'landsLevel' : [
             { id : 1, name : "1等级土地", canSow: [1,2,3] },
@@ -76,7 +90,7 @@
         'shop' : [
             { id : 1, name :"种子", sell:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]},
             { id : 2, name :"道具", sell:[1,2,3,4,6,7,8,9,10]},
-            { id : 3, name :"装饰", sell:[]}
+            { id : 3, name :"宠物", sell:[1,2,3,4,6,7]}
         ],
         // 灾害  effect1 出虫(每小时减少收成的x%)  effect2  缺水(每小时增加x分钟的时间) effect 营养流失(前面两种效果叠加)
         'disaster' : [
@@ -87,7 +101,8 @@
         GetEntry : function(tableName, id)
         {
             if (typeof(this[tableName]) !== 'undefined') {
-                if (this[tableName][id-1].id === id){
+                if (typeof this[tableName][id-1] !== 'undefined' &&
+                    this[tableName][id-1].id === id) {
                     return this[tableName][id-1];
                 }
                 
