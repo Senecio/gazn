@@ -128,11 +128,11 @@
             scenes: settings.scenes,
             debugMode: settings.debug ? cc.DebugMode.INFO : cc.DebugMode.ERROR,
             showFPS: settings.debug,
-            frameRate: 60,
+            frameRate: 30,
             jsList: jsList,
             groupList: settings.groupList,
             collisionMatrix: settings.collisionMatrix,
-            renderMode: 2
+            renderMode: 1
         };
 
         cc.game.run(option, onStart);
