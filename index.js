@@ -24,7 +24,7 @@ Lands = new (require('./logic/lands.js'))();
 Package = new (require('./logic/package.js'))();
 Disaster = new (require('./logic/disaster.js'))();
 HomeLog = new (require('./logic/homeLog.js'))();
-Pet = new (require('./logic/Pet.js'))();
+Pet = new (require('./logic/pet.js'))();
 MsgHandler = require('./msgHandler.js');
 require('./handler/all.js');
 
