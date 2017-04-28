@@ -79,12 +79,12 @@ MsgClearDisaster.Process = function(socket, message) {
                         User.SendDataSync(socket, ['lands','experience']);
                     }
                 }
-            );           
+            );
         }
     });
 }
 
-// 清楚灾害成功
+// 除灾成功
 MsgClearDisaster.Success = function(socket, disasterType) {
     var obj = { type : "clearDisasterSuccess", disasterType : disasterType};
     var msg = JSON.stringify(obj);

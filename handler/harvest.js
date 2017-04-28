@@ -16,8 +16,6 @@ MsgHarvest.Process = function(socket, message) {
     var userId = socket.userId;
     var landIndex = message.landIndex;
     
-    
-    
     var cmd = "SELECT t1.experience, t2.lands FROM `farm_user` t1 LEFT JOIN `farm_game` t2 ON t1.id=t2.userid  WHERE t1.id=?";
     mysql.Query2(cmd, [userId], function (results, fields) {
         if (results.length === 0) {
@@ -68,10 +66,10 @@ MsgHarvest.Process = function(socket, message) {
                 var d = Math.floor((t / MinuteToMicroSecond) / HourToMinute); 
                 cast = d * disasterCfg.effect1;
                 cast = Math.min(cast, disasterCfg.maxEffect1);
+                cast = Math.floor(seedCfg.output * cast);
             }
             
             var fruitId = seedCfg.id;
-            var cast = Math.floor(seedCfg.output * cast);
             var get = seedCfg.output - cast;
             var kinds = 2;  //果实
             var experience = results[0].experience;

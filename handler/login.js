@@ -67,6 +67,11 @@ MsgLogin.Success = function(socket, results) {
                 User.GetNeighbourList(userId, function(results, fields) {
                      socket.send(JSON.stringify({ type : "neighbourList", list : results }));
                 });
+                // 发送好友
+                User.GetFriendsList(userId, function(results, fields) {
+                    socket.send(JSON.stringify({ type : "friendsList", list : results }));
+                });
+                
             });
         }else {
             async.parallel([
@@ -96,6 +101,10 @@ MsgLogin.Success = function(socket, results) {
                         // 发送邻居信息
                         User.GetNeighbourList(userId, function(results, fields) {
                             socket.send(JSON.stringify({ type : "neighbourList", list : results }));
+                        });
+                        // 发送好友
+                        User.GetFriendsList(userId, function(results, fields) {
+                            socket.send(JSON.stringify({ type : "friendsList", list : results }));
                         });
                     }
                 }

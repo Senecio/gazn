@@ -1,7 +1,7 @@
 if(typeof module !== 'undefined')
     module.exports = Lands;
     
-var updateSql = "UPDATE `farm_game` set `lands`=? where `userId`=?";
+var updateSql = "UPDATE `farm_game` SET `lands`=? WHERE `userId`=?";
 var selectSql = "SELECT `lands` FROM `farm_game` WHERE `userId`=?";
 
 var MinuteToMicroSecond = 60000;
@@ -70,11 +70,9 @@ Lands.prototype.HiddenServerSideInfo = function(strLands) {
 
 // 初始化为新用户
 Lands.prototype.InitForNewUser = function(userId, callback) {
-    var cmd = "UPDATE `farm_game` set `lands`=? , `landsLevel`=? where `userId`=?";
     var now = (new Date()).getTime();
-    var items = '[{"state":0, "seedId":0, "sowTime":0, "disasterTime":' + now + '}]';
-    var level = 1;
-    mysql.Query2(cmd, [items, level, userId], function (results, fields) {
+    var items = '[{"level":1, "state":0, "seedId":0, "sowTime":0, "disasterTime":' + now + '}]';
+    mysql.Query2(updateSql, [items, userId], function (results, fields) {
         if (callback) callback(true);
     });
 }
@@ -115,6 +113,23 @@ Lands.prototype.Harvest = function(userId, landIndex, callback) {
     });
 }
 
+// 偷盗
+Lands.prototype.Steal = function(userId, landIndex, count, callback) {
+    mysql.Query2(selectSql, [userId], function (results, fields) {
+        if (results.length === 0) {
+            if (callback) callback(false);
+            return;
+        }else {
+            var lands = JSON.parse(results[0].lands);
+            var land = lands[landIndex];
+            land.stealCount = count;
+            // 更新数据
+            var landsJson = JSON.stringify(lands);
+            mysql.Query2(updateSql, [landsJson, userId], function(results, fields) { if (callback) callback(true); });
+        }
+    });
+}
+
 // 施肥
 Lands.prototype.Manure = function(userId, landIndex, reduceTime, callback) {
     mysql.Query2(selectSql, [userId], function (results, fields) {
@@ -147,6 +162,8 @@ Lands.prototype.Reset = function(userId, landIndex, callback) {
             delete land.disasterType;
             delete land.clearDisasterTime;
             delete land.reduceTime;
+            delete land.stealCount;
+            delete land.stealUsers;
             // 更新数据
             var landsJson = JSON.stringify(lands);
             mysql.Query2(updateSql, [landsJson, userId], function(results, fields) { if (callback) callback(true); });
@@ -163,7 +180,7 @@ Lands.prototype.Unlock = function(userId, landIndex, callback) {
         }else {
             var lands = JSON.parse(results[0].lands);
             var now = (new Date()).getTime();
-            lands[landIndex] = {"state":0, "seedId":0, "sowTime":0, 'disasterTime' : now };
+            lands[landIndex] = {"level":1, "state":0, "seedId":0, "sowTime":0, 'disasterTime' : now };
             // 更新数据
             var landsJson = JSON.stringify(lands);
             mysql.Query2(updateSql, [landsJson, userId], function(results, fields) { if (callback) callback(true); });
@@ -171,15 +188,7 @@ Lands.prototype.Unlock = function(userId, landIndex, callback) {
     });
 }
 
-//  土地升级
-Lands.prototype.Upgrade = function(userId, landsLevel, callback) {
-    var cmd = "UPDATE `farm_game` set `landsLevel`=? where `userId`=?";
-    mysql.Query2(selectSql, [landsLevel , userId], function (results, fields) {
-        if (callback) callback(true);
-    });
-}
-
-//  土地升级
+//  土地更新
 Lands.prototype.Update = function(userId, lands, callback) {
     // 更新数据
     var landsJson = JSON.stringify(lands);

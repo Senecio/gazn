@@ -14,7 +14,7 @@ MsgSowSeeds.Process = function(socket, message) {
     var landIndex = message.landIndex;
     
     //var cmd = "SELECT `lands` , `landsLevel` , `package`  FROM `farm_game` WHERE `userId`=?";
-    var cmd = "SELECT t1.experience, t2.lands, t2.landsLevel, t2.package  FROM `farm_user` t1 LEFT JOIN `farm_game` t2 ON t1.id=t2.userid  WHERE t1.id=?";
+    var cmd = "SELECT t1.experience, t2.lands, t2.package  FROM `farm_user` t1 LEFT JOIN `farm_game` t2 ON t1.id=t2.userId  WHERE t1.id=?";
     mysql.Query2(cmd, [userId], function (results, fields) {
         if (results.length === 0) {
             GameLog("不存在!!!, 不可能, 角色或数据不存在?");
@@ -38,7 +38,7 @@ MsgSowSeeds.Process = function(socket, message) {
                 return;
             }
             
-            var landsLevel = results[0].landsLevel;
+            var landsLevel = lands[landIndex].level;
             if (!Lands.CanSowSeed(landsLevel, seedId)) {
                 MsgHandler.ErrorResponse(socket, 8); // 土地当前等级无法播种此种子
                 return;

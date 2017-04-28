@@ -59,7 +59,7 @@ User.prototype.GetLevelExp = function(experience) {
 // 登陆后的所有需要数据
 User.prototype.SendAllBaseData = function(socket, callback) {
     var userId = socket.userId;
-    var cmd = "SELECT t1.username,t1.money,t1.experience,t1.vip,t1.tq,t2.lands,t2.package FROM farm_user t1 LEFT JOIN farm_game t2 ON t1.id=t2.userid WHERE t1.id=?";
+    var cmd = "SELECT t1.username,t1.money,t1.experience,t1.vip,t1.tq,t2.lands,t2.package,t2.pets FROM farm_user t1 LEFT JOIN farm_game t2 ON t1.id=t2.userid WHERE t1.id=?";
     mysql.Query2(cmd, [userId], function (results, fields) {
         if (results.length === 0) {
             if (callback) callback(false);
@@ -68,7 +68,7 @@ User.prototype.SendAllBaseData = function(socket, callback) {
             var user = results[0];
             var lands = user.lands;
             var obj = { type : "userBaseData", id : userId, username : user.username, 
-                money : user.money, experience : user.experience, vip : user.vip, lands : lands, package : user.package };
+                money : user.money, experience : user.experience, vip : user.vip, lands : lands, package : user.package, pets : user.pets  };
             var msg = JSON.stringify(obj);
             socket.send(msg);
             if (callback) callback(true);
@@ -84,21 +84,82 @@ User.prototype.GetNeighbourList = function(userId, callback) {
 }
 
 // 访问邻居的必须数据 
-User.prototype.SendVisitBaseData = function(socket, whoId, callback) {
+User.prototype.GetVisitBaseData = function(whoId, callback) {
     var userId = whoId;
-    var cmd = "SELECT t1.username,t1.money,t1.experience,t1.vip,t1.tq,t2.lands FROM farm_user t1 LEFT JOIN farm_game t2 ON t1.id=t2.userid WHERE t1.id=?";
+    var cmd = "SELECT t1.id,t1.username,t1.money,t1.experience,t1.vip,t1.tq,t2.lands FROM farm_user t1 LEFT JOIN farm_game t2 ON t1.id=t2.userid WHERE t1.id=?";
     mysql.Query2(cmd, [userId], function (results, fields) {
         if (results.length === 0) {
-            if (callback) callback(false);
-            return;
+            if (callback) callback(null, null);
         }else {
-            var user = results[0];
-            var lands = user.lands;
-            var obj = { type : "visitBaseData", id : userId, username : user.username, 
-                money : user.money, experience : user.experience, vip : user.vip, lands : lands };
-            var msg = JSON.stringify(obj);
-            socket.send(msg);
+            if (callback) callback(results, fields);
+        }
+    });
+}
+
+// 添加好友
+User.prototype.AddFriend = function(userId, friendId, callback) {
+    var cmd = "SELECT `friendsId` FROM farm_friend WHERE `userId`=?";
+    mysql.Query2(cmd, [userId], function (results, fields) {
+        var cmd, friendIdStr;
+        if (results.length === 0) {
+            cmd = "INSERT INTO `farm_friend` (`id`, `userId`, `friendsId`) VALUES (NULL,?,?)";
+            friendIdStr = "["+friendId+"]";
+            mysql.Query2(cmd, [userId,friendIdStr]);
             if (callback) callback(true);
+        } else {
+            var friendsId = JSON.parse(results[0].friendsId);
+            var idx = friendsId.indexOf(friendId);
+            if (idx >= 0) {
+                if (callback) callback(false);
+            }
+            else {
+                friendsId.push(friendId);
+                friendIdStr = JSON.stringify(friendsId);
+                cmd = "UPDATE `farm_friend` SET `friendsId`=? WHERE `userId`=?";
+                mysql.Query2(cmd, [friendIdStr,userId]);
+                if (callback) callback(true);
+            }
+        }
+    });
+}
+
+// 删除好友
+User.prototype.RemoveFriend = function(userId, friendId, callback) {
+    var cmd = "SELECT `friendsId` FROM farm_friend WHERE `userId`=?";
+    mysql.Query2(cmd, [userId], function (results, fields) {
+        var cmd, friendIdStr;
+        if (results.length === 0) {
+            if (callback) callback(false);
+        }else {
+            var friendsId = JSON.parse(results[0].friendsId);
+            var idx = friendsId.indexOf(friendId);
+            if (idx >= 0) {
+                friendsId.splice(idx, 1);
+                friendIdStr = JSON.stringify(friendsId);
+                cmd = "UPDATE `farm_friend` SET `friendsId`=? WHERE `userId`=?";
+                mysql.Query2(cmd, [friendIdStr,userId]);
+                if (callback) callback(true);
+            }
+            else {
+                if (callback) callback(false);
+            }
+        }
+    });
+}
+
+// 好友基础数据
+User.prototype.GetFriendsList = function(userId, callback) {
+    var cmd = "SELECT `friendsId` FROM farm_friend WHERE `userId`=?";
+    mysql.Query2(cmd, [userId], function (results, fields) {
+        var cmd, friendIdStr;
+        if (results.length === 0) {
+            if (callback) callback(null, null);
+        }else {
+            var friendsId = JSON.parse(results[0].friendsId);
+            var cmd = "SELECT `id`, `username`, `experience` FROM `farm_user` WHERE `id` IN (?) LIMIT 200";
+            mysql.Query2(cmd, [friendsId], function (results, fields) {
+                if (callback) callback(results, fields);
+            });
         }
     });
 }
@@ -116,17 +177,19 @@ User.prototype.SendDataSync = function(socket, dataFields, callback) {
     var fieldsCmd = "";
     for (var i = 0; i < dataFields.length; i++) {
         if (dataFields[i] === 'money') {
-            fieldsCmd += 't1.money,'
+            fieldsCmd += 't1.money,';
         }else if (dataFields[i] === 'experience') {
-            fieldsCmd += 't1.experience,'
+            fieldsCmd += 't1.experience,';
         }else if (dataFields[i] === 'vip') {
-            fieldsCmd += 't1.vip,'
+            fieldsCmd += 't1.vip,';
         }else if (dataFields[i] === 'tq') {
-            fieldsCmd += 't1.tq,'
+            fieldsCmd += 't1.tq,';
         }else if (dataFields[i] === 'lands') {
-            fieldsCmd += 't2.lands,'
+            fieldsCmd += 't2.lands,';
         }else if (dataFields[i] === 'package') {
-            fieldsCmd += 't2.package,'
+            fieldsCmd += 't2.package,';
+        }else if (dataFields[i] === 'pets') {
+            fieldsCmd += 't2.pets,';
         }
         else  {
             GameLog("=== error field : " +  dataFields[i] + "===" );
@@ -159,6 +222,8 @@ User.prototype.SendDataSync = function(socket, dataFields, callback) {
                     obj['lands'] = user.lands;
                 }else if (dataFields[i] === 'package') {
                     obj['package'] = user.package;
+                }else if (dataFields[i] === 'pets') {
+                    obj['pets'] = user.pets;
                 }
             }
 

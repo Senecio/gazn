@@ -1,7 +1,7 @@
 if(typeof module !== 'undefined')
     module.exports = Package;
 
-var updateSql = "UPDATE `farm_game` set `package`=? where `userId`=?";
+var updateSql = "UPDATE `farm_game` SET `package`=? where `userId`=?";
     
 function Package() {
 

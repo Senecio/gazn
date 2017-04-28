@@ -95,8 +95,6 @@ Disaster.prototype.Trigger = function(userId, callback) {
 
                 if (now <= (land.disasterTime + (disasterCfg.cd * MinuteToMicroSecond)))
                     continue; // 灾害cd时间未到
-                
-                GameLog("超过灾害cd!")
 
                 reduceTime = typeof land.reduceTime !== 'undefined' ? land.reduceTime[0] : 0;
                 if (now > (land.sowTime + (seedCfg.time.part[0] - reduceTime) * MinuteToMicroSecond))
@@ -116,7 +114,6 @@ Disaster.prototype.Trigger = function(userId, callback) {
 
             // 更新数据
             if (change) {
-                GameLog("更新cd!")
                 Lands.Update(userId, lands, callback);
             }else {
                 if (callback) callback(false);

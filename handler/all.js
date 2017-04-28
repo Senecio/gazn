@@ -1,13 +1,15 @@
-// 2017/04/19 周三
+// 2017/04/28 周五
 // create by li shihai
 require('./addFriend.js');
 require('./buyItem.js');
 require('./clearDisaster.js');
+require('./getLogs.js');
 require('./harvest.js');
 require('./login.js');
 require('./manure.js');
 require('./neighbour.js');
 require('./register.js');
+require('./removeFriend.js');
 require('./removePlant.js');
 require('./sellFruit.js');
 require('./sowSeeds.js');

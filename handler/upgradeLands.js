@@ -3,12 +3,16 @@
 
 var MsgUpgradeLands = { }
 
+var async = require('async');
+
 MsgUpgradeLands.interest = "upgradeLands"
 MsgUpgradeLands.Process = function(socket, message) {
     GameLog("upgrade lands");
    
-    var userId = socket.userId;    
-    var cmd = "SELECT t1.money , t1.experience, t2.lands, t2.landsLevel, t2.package FROM `farm_user` t1 LEFT JOIN `farm_game` t2 ON t1.id=t2.userid  WHERE `id`=?";
+    var userId = socket.userId;
+    var landIndex = message.landIndex;
+    
+    var cmd = "SELECT t1.money , t1.experience, t2.lands, t2.package FROM `farm_user` t1 LEFT JOIN `farm_game` t2 ON t1.id=t2.userId  WHERE t1.id=?";
     mysql.Query2(cmd, [userId], function (results, fields)
     {
         if (results.length === 0) {
@@ -16,9 +20,16 @@ MsgUpgradeLands.Process = function(socket, message) {
         }else {
             var hasMoney = results[0].money;
             var experience = results[0].experience;
-            var landsLevel = results[0].landsLevel;
             
-            var entry = table.GetEntry('landsLevel', landsLevel + 1);
+            var lands = JSON.parse(results[0].lands);
+            if (landIndex >= lands.length) {
+                MsgHandler.ErrorResponse(socket, 3); // 土地位未开垦
+                return;
+            }
+            
+            var land = lands[landIndex];
+            
+            var entry = table.GetEntry('landsLevel', land.level + 1);
             if (entry === null) {
                 MsgHandler.ErrorResponse(socket, 11); // 土地无法到达此等级!
                 return;
@@ -34,7 +45,6 @@ MsgUpgradeLands.Process = function(socket, message) {
                 return;
             }
 
-            var lands = JSON.parse(results[0].lands);
             if (entry.landsNumber > lands.length) {
                 MsgHandler.ErrorResponse(socket, 9); // 土地扩建的数量不满足
                 return;
@@ -48,6 +58,9 @@ MsgUpgradeLands.Process = function(socket, message) {
                 MsgHandler.ErrorResponse(socket, 10); // 道具不足
                 return;
             }
+            
+            // 土地升级
+            land.level += 1;
             
             async.parallel([
                 function(callback){
@@ -64,7 +77,7 @@ MsgUpgradeLands.Process = function(socket, message) {
                 },
                 function(callback){
                     // 土地升级
-                    Lands.Upgrade(userId, landsLevel + 1, function(rs) {
+                    Lands.Update(userId, lands, function(rs) {
                         callback(null, rs);
                     });
                 }],
