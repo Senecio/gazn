@@ -135,11 +135,11 @@ MsgBuyItems.Process = function(socket, message) {
                 
                 var amountPrice;
                 if (number === 7) {
-                    amountPrice = petCfg.buy[0];
+                    amountPrice = petCfg.time.money[0];
                 }else if (number === 30) {
-                    amountPrice = petCfg.buy[1];
+                    amountPrice = petCfg.time.money[1];
                 }else if (number === 90) {
-                    amountPrice = petCfg.buy[2];
+                    amountPrice = petCfg.time.money[2];
                 }else {
                     GameLog("宠物购买周期不是配置选项[" + number + "]");
                     return;

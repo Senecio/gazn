@@ -1,5 +1,6 @@
-// 2017/04/28 ÖÜÎå
+// 2017/04/29 ÖÜÁù
 // create by li shihai
+require('./activePet.js');
 require('./addFriend.js');
 require('./buyItem.js');
 require('./clearDisaster.js');
