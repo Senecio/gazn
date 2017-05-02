@@ -44,7 +44,7 @@ MsgVisitClearDisaster.Process = function(socket, message) {
             var rs2 = results[1];
             var rs3 = results[2];
             
-            if (rs1.length === 0 || rs3.length === 0)
+            if (rs1.length === 0)
                 return;
             
             var lands = JSON.parse(rs1[0].lands);
