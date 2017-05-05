@@ -1,1 +1,1 @@
-{"__type__":"cc.SpriteFrame","content":{"name":"zhongZi","texture":"59c2f1b9-1748-40aa-86d9-472399142430","rect":[44,39,53,62],"offset":[0.5,-4],"originalSize":[140,132]}}
+{"__type__":"cc.SpriteFrame","content":{"name":"zhongZi","texture":"59c2f1b9-1748-40aa-86d9-472399142430","rect":[0,0,32,21],"offset":[0,0],"originalSize":[32,21]}}

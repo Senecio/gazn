@@ -58,3 +58,11 @@ Package.prototype.UseItem = function(userId, kinds, itemId, number, callback) {
         }
     });
 }
+
+
+// 使用物品
+Package.prototype.Update = function(userId, package, callback) {
+    // 更新数据
+    var packageJson = JSON.stringify(package);
+    mysql.Query2(updateSql, [packageJson, userId], function(results, fields) { if (callback) callback(true); });
+}

@@ -115,45 +115,6 @@ cc.Class({
 });
 
 cc._RFpop();
-},{}],"Table":[function(require,module,exports){
-"use strict";
-cc._RFpush(module, 'd5951wa1pJFmLLmVZ8/1Grn', 'Table');
-// script\Table.js
-
-"use strict";
-
-// 数据表
-;(function () {
-
-    var Table = {
-        // buff表
-        'error': [{ id: 1, description: "账号或密码错误!" }, { id: 2, description: "此账号已经注册过了!" }, { id: 3, description: "土地位尚未开垦!" }, { id: 4, description: "土地并非空闲!" }, { id: 5, description: "种子不足!" }, { id: 6, description: "金币不足!" }, { id: 7, description: "等级不足!" }, { id: 8, description: "土地当前等级无法播种此种子!" }, { id: 9, description: "土地扩建的数量不满足!" }, { id: 10, description: "道具不足!" }, { id: 11, description: "土地无法到达此等级!" }, { id: 12, description: "土地还没有播种!" }, { id: 13, description: "道具不足!" }, { id: 14, description: "植物已经成熟!" }, { id: 15, description: "道具类型必须是化肥!" }, { id: 16, description: "只能每阶段施一次肥!" }, { id: 17, description: "果实不足!" }],
-        // 植物表
-        'plant': [{ id: 1, name: "植物1", buy: 100, fruit: { name: "果实1", price: 20 }, output: 15, minLevel: 1, time: { amount: 600, part: [200, 200, 200] }, sowExp: 2, harvestExp: 10, clearExp: 2 }, { id: 2, name: "植物2", buy: 120, fruit: { name: "果实2", price: 30 }, output: 15, minLevel: 2, time: { amount: 600, part: [200, 200, 200] }, sowExp: 2, harvestExp: 10, clearExp: 2 }, { id: 3, name: "植物3", buy: 140, fruit: { name: "果实3", price: 40 }, output: 15, minLevel: 3, time: { amount: 600, part: [200, 200, 200] }, sowExp: 2, harvestExp: 10, clearExp: 2 }, { id: 4, name: "植物4", buy: 160, fruit: { name: "果实4", price: 60 }, output: 15, minLevel: 4, time: { amount: 660, part: [200, 260, 200] }, sowExp: 2, harvestExp: 12, clearExp: 2 }, { id: 5, name: "植物5", buy: 180, fruit: { name: "果实5", price: 80 }, output: 15, minLevel: 5, time: { amount: 660, part: [200, 260, 200] }, sowExp: 2, harvestExp: 12, clearExp: 2 }, { id: 6, name: "植物6", buy: 200, fruit: { name: "果实6", price: 100 }, output: 15, minLevel: 6, time: { amount: 660, part: [200, 260, 200] }, sowExp: 2, harvestExp: 12, clearExp: 2 }, { id: 7, name: "植物7", buy: 220, fruit: { name: "果实7", price: 120 }, output: 15, minLevel: 7, time: { amount: 720, part: [200, 260, 260] }, sowExp: 2, harvestExp: 14, clearExp: 2 }, { id: 8, name: "植物8", buy: 240, fruit: { name: "果实8", price: 140 }, output: 15, minLevel: 8, time: { amount: 720, part: [200, 260, 260] }, sowExp: 2, harvestExp: 14, clearExp: 2 }, { id: 9, name: "植物9", buy: 260, fruit: { name: "果实9", price: 160 }, output: 15, minLevel: 9, time: { amount: 720, part: [200, 260, 260] }, sowExp: 2, harvestExp: 14, clearExp: 2 }, { id: 10, name: "植物10", buy: 280, fruit: { name: "果实10", price: 180 }, output: 20, minLevel: 10, time: { amount: 780, part: [260, 260, 260] }, sowExp: 2, harvestExp: 16, clearExp: 2 }, { id: 11, name: "植物11", buy: 300, fruit: { name: "果实11", price: 200 }, output: 20, minLevel: 11, time: { amount: 780, part: [260, 260, 260] }, sowExp: 2, harvestExp: 16, clearExp: 2 }, { id: 12, name: "植物12", buy: 320, fruit: { name: "果实12", price: 220 }, output: 20, minLevel: 12, time: { amount: 780, part: [260, 260, 260] }, sowExp: 2, harvestExp: 16, clearExp: 2 }, { id: 13, name: "植物13", buy: 340, fruit: { name: "果实13", price: 240 }, output: 20, minLevel: 13, time: { amount: 900, part: [300, 300, 300] }, sowExp: 3, harvestExp: 16, clearExp: 2 }, { id: 14, name: "植物14", buy: 360, fruit: { name: "果实14", price: 260 }, output: 20, minLevel: 14, time: { amount: 900, part: [300, 300, 300] }, sowExp: 3, harvestExp: 16, clearExp: 2 }, { id: 15, name: "植物15", buy: 380, fruit: { name: "果实15", price: 270 }, output: 20, minLevel: 15, time: { amount: 900, part: [300, 300, 300] }, sowExp: 3, harvestExp: 16, clearExp: 2 }, { id: 16, name: "植物16", buy: 400, fruit: { name: "果实16", price: 280 }, output: 20, minLevel: 16, time: { amount: 1440, part: [480, 480, 480] }, sowExp: 3, harvestExp: 18, clearExp: 2 }, { id: 17, name: "植物17", buy: 420, fruit: { name: "果实17", price: 290 }, output: 20, minLevel: 17, time: { amount: 1440, part: [480, 480, 480] }, sowExp: 3, harvestExp: 18, clearExp: 2 }, { id: 18, name: "植物18", buy: 440, fruit: { name: "果实18", price: 300 }, output: 20, minLevel: 18, time: { amount: 1440, part: [480, 480, 480] }, sowExp: 3, harvestExp: 18, clearExp: 2 }],
-        // 道具
-        'property': [{ id: 1, name: "化肥1", type: 1, data: 120, desc: "每个阶段使用1次,减少2小时成熟时间", buy: 1000 }, { id: 2, name: "化肥2", type: 1, data: 180, desc: "每个阶段使用1次,减少3小时成熟时间", buy: 1500 }, { id: 3, name: "化肥3", type: 2, data: 120, desc: "每个阶段可多次使用,减少2小时成熟时间", buy: 2000 }, { id: 4, name: "化肥4", type: 2, data: 180, desc: "每个阶段可多次使用,减少3小时成熟时间", buy: 3000 }],
-        // 土地等级表
-        'landsLevel': [{ id: 1, name: "1等级土地", canSow: [1, 2, 3] }, { id: 2, name: "2等级土地", canSow: [4, 5, 6], minLevel: 10, landsNumber: 3, needMoney: 10000, propertyId: 6, propertyNumber: 1 }, { id: 3, name: "3等级土地", canSow: [7, 8, 9], minLevel: 15, landsNumber: 5, needMoney: 20000, propertyId: 7, propertyNumber: 1 }, { id: 4, name: "4等级土地", canSow: [10, 11, 12], minLevel: 20, landsNumber: 7, needMoney: 40000, propertyId: 8, propertyNumber: 1 }, { id: 5, name: "5等级土地", canSow: [13, 14, 15], minLevel: 25, landsNumber: 9, needMoney: 60000, propertyId: 9, propertyNumber: 1 }, { id: 6, name: "6等级土地", canSow: [16, 17, 18], minLevel: 30, landsNumber: 12, needMoney: 80000, propertyId: 10, propertyNumber: 1 }],
-        //  土地解锁表
-        'unlockLands': [{ id: 1, needMoney: [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000], minLevel: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }],
-        // 商店
-        'shop': [{ id: 1, name: "种子", sell: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] }, { id: 2, name: "道具", sell: [1, 2, 3, 4] }, { id: 3, name: "装饰", sell: [] }],
-        'market': [],
-
-        GetEntry: function GetEntry(tableName, id) {
-            if (typeof this[tableName] !== 'undefined') {
-                return this[tableName][id - 1];
-            }
-            return null;
-        }
-    };
-
-    if (typeof module !== 'undefined') module.exports = Table;
-
-    if (typeof window !== 'undefined') window.Table = Table;
-})();
-
-cc._RFpop();
 },{}],"buyItemsHandler":[function(require,module,exports){
 "use strict";
 cc._RFpush(module, 'c49f0AZwPBMHpfqVQ9qFWIM', 'buyItemsHandler');
@@ -358,7 +319,7 @@ cc.Class({
 
     Setup: function Setup(config) {
         this.seedName.string = config.name;
-        this.time.string = config.time.amount / 60 + (config.time.amount % 60 ? 1 : 0) + "小时";
+        this.time.string = config.time.amount / 60 + "小时";
         this.output.string = config.output + "个";
         this.price.string = config.fruit.price + "金币";
         this.gains.string = config.output * config.fruit.price;
@@ -403,6 +364,192 @@ cc.Class({
 });
 
 cc._RFpop();
+},{}],"clearDisaster":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, 'a7ba5iZgTVCs65ppDPuBXvh', 'clearDisaster');
+// script\handler\clearDisaster.js
+
+"use strict";
+
+var MessageHandler = require("msgHandler");
+var clearDisasterSuccess = {};
+clearDisasterSuccess['interest'] = "clearDisasterSuccess";
+clearDisasterSuccess['Process'] = function (message) {
+    GameEvent().SendEvent("ClearDisasterSuccess");
+    if (message.disasterType === 1) {
+        GameNotify().AddText("除虫成功!");
+    } else if (message.disasterType === 2) {
+        GameNotify().AddText("浇水成功!");
+    } else if (message.disasterType === 3) {
+        GameNotify().AddText("营养添加成功!");
+    }
+};
+MessageHandler.Add(clearDisasterSuccess);
+
+cc._RFpop();
+},{"msgHandler":"msgHandler"}],"detail":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, '0b4fcmzcGxLiKOLDwR+Zvy2', 'detail');
+// script\ui\detail.js
+
+'use strict';
+
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        scrollView: cc.ScrollView,
+        closeBtn: cc.Button,
+        log1Prefab: cc.Prefab,
+        log2Prefab: cc.Prefab,
+        log3Prefab: cc.Prefab
+    },
+
+    // use this for initialization
+    onLoad: function onLoad() {
+        this.closeBtn.node.on('click', this.OnClose, this);
+
+        GameEvent().OnEvent("UpdateLogs", this.ReLoad, this);
+    },
+
+    OnClose: function OnClose() {
+        this.OnHide();
+    },
+
+    OnShow: function OnShow() {
+        this.node.active = true;
+
+        this.RequstLogs();
+        this.ReLoad();
+    },
+
+    OnHide: function OnHide() {
+        this.node.active = false;
+    },
+
+    RequstLogs: function RequstLogs() {
+        var obj = { type: 'getLogs' };
+        var msg = JSON.stringify(obj);
+        GameSocket().Send(msg);
+    },
+
+    ReLoad: function ReLoad() {
+        var gameData = window.GameData;
+        var logs = gameData.logs;
+        var content = this.scrollView.content;
+        content.removeAllChildren();
+        var prefab;
+        for (var i = 0; i < logs.length; ++i) {
+            prefab = this.InitLogPerfab(logs[i]);
+            if (prefab) {
+                content.addChild(prefab);
+            }
+        }
+        this.scrollView.scrollToTop(0.1);
+    },
+
+    InitLogPerfab: function InitLogPerfab(log) {
+        var prefab = null,
+            str,
+            richText = null;
+        var data = JSON.parse(log.data);
+        var nowTime = new Date();
+        var logTime = new Date(log.time);
+        var timeStr = "";
+        if (nowTime.getFullYear() === logTime.getFullYear() && nowTime.getMonth() === logTime.getMonth()) {
+            if (nowTime.getDate() === logTime.getDate()) {
+                timeStr = "今天";
+            } else if (nowTime.getDate() - 1 === logTime.getDate()) {
+                timeStr = "昨天";
+            }
+        }
+
+        if (timeStr.length === 0) {
+            if (logTime.getMonth() < 9) {
+                timeStr += "0" + (logTime.getMonth() + 1);
+            } else {
+                timeStr += logTime.getMonth() + 1;
+            }
+
+            if (nowTime.getDate() < 10) {
+                timeStr += "0" + (logTime.getDate() + 1);
+            } else {
+                timeStr += logTime.getDate();
+            }
+        }
+
+        if (log.type === 1) {
+            // 偷盗
+            var seedCfg = Table.GetEntry("plant", data[2]);
+
+            if (data[4] === -1) {
+                prefab = cc.instantiate(this.log1Prefab);
+                richText = prefab.getComponent(cc.RichText);
+                str = richText.string;
+                str = str.replace(/name/, data[1]);
+                str = str.replace(/fruitName/, seedCfg.fruit.name);
+                str = str.replace(/number/, data[3]);
+            } else {
+                prefab = cc.instantiate(this.log2Prefab);
+                str = prefab.getComponent(cc.RichText).string;
+                str = str.replace(/name/, data[1]);
+                str = str.replace(/fruitName/, seedCfg.fruit.name);
+                str = str.replace(/number1/, data[3]);
+                str = str.replace(/number1/, data[4]);
+            }
+        } else if (log.type === 2) {
+            // 除灾
+            prefab = cc.instantiate(this.log3Prefab);
+            richText = prefab.getComponent(cc.RichText);
+            str = richText.string;
+            str = str.replace(/name/, data[1]);
+            if (log.subType === 1) {
+                str = str.replace(/disasterName/, "虫灾");
+            } else if (log.subType === 2) {
+                str = str.replace(/disasterName/, "旱灾");
+            } else if (log.subType === 3) {
+                str = str.replace(/disasterName/, "营养流失");
+            }
+            str = str.replace(/exp/, data[2]);
+        }
+
+        str = str.replace(/time/, timeStr);
+        if (richText) richText.string = str;
+
+        return prefab;
+    }
+
+});
+
+cc._RFpop();
+},{}],"duihuan":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, '1d27dYq6JxBM6T6fiQdrByj', 'duihuan');
+// script\ui\duihuan.js
+
+"use strict";
+
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        shangpinItem: cc.Prefab,
+        shangpinScroll: cc.ScrollView,
+        shangpinImg: cc.Sprite,
+        shangpinNameLab: cc.Label,
+        conditionLab: cc.Label,
+        shangpinNumLab: cc.Label,
+        shangpinSubBtn: cc.Button,
+        shangpinAddBtn: cc.Button,
+        duihuanBtn: cc.Button
+    },
+
+    // use this for initialization
+    onLoad: function onLoad() {}
+
+});
+
+cc._RFpop();
 },{}],"error":[function(require,module,exports){
 "use strict";
 cc._RFpush(module, 'e3e63hfLZdPjZl6YD4R3NNl', 'error');
@@ -424,6 +571,56 @@ error['Process'] = function (message) {
 MessageHandler.Add(error);
 
 cc._RFpop();
+},{"msgHandler":"msgHandler"}],"friendHandler":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, 'e1968tX8cNPGK0xKOkWCgEw', 'friendHandler');
+// script\handler\friendHandler.js
+
+"use strict";
+
+var MessageHandler = require("msgHandler");
+var addFriendSuccess = {};
+addFriendSuccess['interest'] = "addFriendSuccess";
+addFriendSuccess['Process'] = function (message) {
+    GameNotify().AddText("添加好友成功!");
+};
+MessageHandler.Add(addFriendSuccess);
+
+var removeFriendSuccess = {};
+removeFriendSuccess['interest'] = "removeFriendSuccess";
+removeFriendSuccess['Process'] = function (message) {
+    GameNotify().AddText("删除好友成功!");
+};
+MessageHandler.Add(removeFriendSuccess);
+
+cc._RFpop();
+},{"msgHandler":"msgHandler"}],"friendsList":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, 'cd235UIPCVNzJPpfOP1Jw+z', 'friendsList');
+// script\handler\friendsList.js
+
+"use strict";
+
+var MessageHandler = require("msgHandler");
+var friendsList = {};
+friendsList['interest'] = "friendsList";
+friendsList['Process'] = function (message) {
+    var gameData = window.GameData;
+    gameData.friendsList = message.list.slice();
+    GameEvent().SendEvent("UpdateFriendsList");
+};
+MessageHandler.Add(friendsList);
+
+var friendsListSuccess = {};
+friendsListSuccess['interest'] = "friendsListSuccess";
+friendsListSuccess['Process'] = function (message) {
+    var gameData = window.GameData;
+    gameData.friendsList = message.list.slice();
+    GameEvent().SendEvent("UpdateFriendsList");
+};
+MessageHandler.Add(friendsListSuccess);
+
+cc._RFpop();
 },{"msgHandler":"msgHandler"}],"gameData":[function(require,module,exports){
 "use strict";
 cc._RFpush(module, 'b1eb7lYRI5DV5yopcwfGiwY', 'gameData');
@@ -440,25 +637,52 @@ cc._RFpush(module, 'b1eb7lYRI5DV5yopcwfGiwY', 'gameData');
     experience: 0,
     vip: 0,
     lands: [],
-    package: []
+    package: [],
+    neighbourList: [],
+    friendsList: [],
+    visitUser: {},
+    logs: []
   };
 
   GameData.GetUserId = function () {
     return this.userId;
-  }, GameData.GetUserName = function () {
+  };
+
+  GameData.GetUserName = function () {
     return this.userName;
-  }, GameData.GetMoney = function () {
+  };
+
+  GameData.GetMoney = function () {
     return this.money;
-  }, GameData.GetLevel = function () {
+  };
+
+  GameData.GetLevel = function () {
     var level = 1;
     if (this.experience > 0) {
       level = level + Math.floor(this.experience / 200);
     }
 
     return level;
-  }, GameData.GetLevelExp = function () {
+  };
+
+  GameData.GetLevelByExp = function (experience) {
+    var level = 1;
+    if (experience > 0) {
+      level = level + Math.floor(experience / 200);
+    }
+
+    return level;
+  };
+
+  GameData.GetLevelExp = function () {
     return this.experience % 200;
-  }, GameData.GetLevelExpMax = function () {
+  };
+
+  GameData.GetLevelExpByExp = function (experience) {
+    return experience % 200;
+  };
+
+  GameData.GetLevelExpMax = function () {
     return 200;
   };
 
@@ -507,7 +731,7 @@ cc._RFpop();
 cc._RFpush(module, '0c2e7ISWOdImp7YKyyaFh8m', 'gameLayer');
 // script\gameLayer.js
 
-"use strict";
+'use strict';
 
 var enum_opbtn_sow = 1;
 var enum_opbtn_info = 2;
@@ -515,8 +739,10 @@ var enum_opbtn_remove = 3;
 var enum_opbtn_manure = 4;
 var enum_opbtn_harvest = 5;
 var enum_opbtn_water = 6;
-var enum_opbtn_degrass = 7;
+var enum_opbtn_extraNutrition = 7;
 var enum_opbtn_debug = 8;
+var enum_opbtn_steal = 9;
+var enum_opbtn_upgread = 10;
 
 var enum_landsState_idle = 0;
 var enum_landsState_grow = 1;
@@ -524,6 +750,79 @@ var eunm_landsState_harvested = 2;
 
 var MinuteToMicroSecond = 60000;
 var HourToMicroSecond = 3600000;
+var HourToMinute = 60;
+
+function GetPart(sowTime, disasterTime, timeParts, effectParent, clearDisasterTime) {
+    var c = 0;
+    var array = [0, 0, 0];
+    if (disasterTime < sowTime) {
+        return array;
+    }
+    var a = Math.floor((disasterTime - sowTime) / MinuteToMicroSecond);
+    for (var i = 0; i < 3; ++i) {
+        c += timeParts[i];
+        if (c > a) {
+            if (typeof clearDisasterTime !== 'undefined' && clearDisasterTime) {
+                var d = Math.floor((clearDisasterTime - disasterTime) / MinuteToMicroSecond);
+                if (c - a > d) {
+                    array[i] = Math.floor(d / HourToMinute * effectParent);
+                } else {
+                    array[i] = Math.floor((c - a) / HourToMinute * effectParent);
+                    d -= c - a;
+                    while (++i < 3) {
+                        if (d > timeParts[i]) {
+                            array[i] = Math.floor(timeParts[i] / HourToMinute * effectParent);
+                            d -= timeParts[i];
+                        } else {
+                            array[i] = Math.floor(d / HourToMinute * effectParent);
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
+
+            array[i] = Math.floor((c - a) / HourToMinute * effectParent);
+            c = 0;
+            a = 0;
+        }
+    }
+    return array;
+}
+
+function IsMatured(reduceMinuteArray, nowTime, sowTime, disasterTime, timeParts, effectParent, clearDisasterTime) {
+    var g = Math.floor((nowTime - sowTime) / MinuteToMicroSecond);
+    var a = g;
+
+    var incArray = [0, 0, 0];
+    if (typeof disasterTime !== 'undefined' && disasterTime) {
+        incArray = GetPart(sowTime, disasterTime, timeParts, effectParent, clearDisasterTime);
+    }
+
+    for (var i = 0; i < 3; ++i) {
+        if (timeParts[i] + incArray[i] > reduceMinuteArray[i] + a) {
+            return [false, i, timeParts[i] + incArray[i] - reduceMinuteArray[i] - a];
+        } else {
+            a = reduceMinuteArray[i] + a - (timeParts[i] + incArray[i]);
+        }
+    }
+    return [true];
+}
+
+function GetDisasterCast(land, disasterCfg, seedCfg) {
+
+    var cast = 0;
+    var clearDisasterTime = typeof land.clearDisasterTime !== 'undefined' ? land.clearDisasterTime : new Date().getTime();
+    if (typeof land.disasterTime !== 'undefined' && clearDisasterTime > land.disasterTime && (land.disasterType === 1 || land.disasterType === 3)) {
+        var t = clearDisasterTime - land.disasterTime;
+        var d = Math.floor(t / MinuteToMicroSecond / HourToMinute);
+        cast = d * disasterCfg.effect1;
+        cast = Math.min(cast, disasterCfg.maxEffect1);
+        cast = Math.floor(seedCfg.output * cast);
+    }
+
+    return cast;
+}
 
 cc.Class({
     extends: cc.Component,
@@ -531,7 +830,11 @@ cc.Class({
     properties: {
         landsPrefab: cc.Prefab,
         opertorBtnPrefab: cc.Prefab,
-        cangKuSpr: cc.Sprite
+        cangKuSpr: cc.Sprite,
+        //landsOffsetX : { default : 0, type : cc.Integer },
+        //landsOffsetY : { default : 0, type : cc.Integer }
+
+        refreshSecond: { default: 30, type: cc.Float }
     },
 
     // use this for initialization
@@ -539,15 +842,56 @@ cc.Class({
         this.scrollView = this.node.getComponent("cc.ScrollView");
         this.content = this.scrollView.content;
         this.lands = this.content.getChildByName("lands");
+        this.touchNode = this.content.getChildByName("touchNode");
         this.scrollView.horizontal = false;
         this.scrollView.vertical = false;
+        this.ReLoadFunc = null;
+        this.OperatorFunc = null;
+        this.OnClearDisasterFunc = null;
 
         GameEvent().OnEvent("LoginSuccess", this.OnLoginSuccess, this);
-        GameEvent().OnEvent("UpdateBaseData", this.ReLoadData, this);
-        GameEvent().OnEvent("UpdateLands", this.ReLoadData, this);
+        GameEvent().OnEvent("NeedCancelSelectLand", this.OnCancelSelectLand, this);
+
+        GameEvent().OnEvent("EnterHome", this.OnEnterHome, this); // 进入自己农场  
+        GameEvent().OnEvent("VisitHome", this.OnVisitHome, this); // 访问别人农场 
+    },
+
+    OnEnterHome: function OnEnterHome() {
+        GameEvent().OnEvent("UpdateBaseData", this.WarpReloadData, this);
+        GameEvent().OnEvent("UpdateLands", this.WarpReloadData, this);
 
         GameEvent().OnEvent("UserSowSeeds", this.OnUserSowSeed, this);
         GameEvent().OnEvent("UserManure", this.OnUserManure, this);
+
+        this.ReLoadFunc = this.ReLoadData;
+        this.OperatorFunc = this.OperatorSelfLands;
+        this.OnClearDisasterFunc = this.OnClearDisaster;
+
+        this.cangKuSpr.node.targetOff(this);
+        this.cangKuSpr.node.on(cc.Node.EventType.TOUCH_END, function (event) {
+            GameEvent().SendEvent("OpenWarehouse");
+        }.bind(this), this);
+
+        this.OnCancelSelectLand();
+    },
+
+    OnVisitHome: function OnVisitHome() {
+        GameEvent().OffEvent("UpdateBaseData", this.WarpReloadData, this);
+        GameEvent().OffEvent("UpdateLands", this.WarpReloadData, this);
+
+        GameEvent().OffEvent("UserSowSeeds", this.OnUserSowSeed, this);
+        GameEvent().OffEvent("UserManure", this.OnUserManure, this);
+
+        GameEvent().OnEvent("VisitUserLands", this.WarpReloadData, this);
+
+        this.ReLoadFunc = this.VisitReLoadData;
+        this.OperatorFunc = this.OperatorVisiUserLands;
+        this.OnClearDisasterFunc = this.OnClearVisitUserDisaster;
+
+        this.cangKuSpr.node.targetOff(this);
+        this.cangKuSpr.node.on(cc.Node.EventType.TOUCH_END, function () {}, this);
+
+        this.OnCancelSelectLand();
     },
 
     start: function start() {
@@ -564,13 +908,21 @@ cc.Class({
         }
     },
 
+    OnCancelSelectLand: function OnCancelSelectLand() {
+        if (typeof this.lastHightLight !== 'undefined') {
+            this.HightLightLandsPrefab(this.lastHightLight, this.selectLandIndex, false);
+            this.lastHightLight = undefined;
+            this.selectLandIndex = -1;
+        }
+    },
+
     OnLoginSuccess: function OnLoginSuccess() {
         this.scrollView.horizontal = true;
         this.scrollView.vertical = true;
         this.selectLandIndex = -1;
         this.ReLoadData();
 
-        this.lands.on(cc.Node.EventType.TOUCH_END, function (event) {
+        this.touchNode.on(cc.Node.EventType.TOUCH_END, function (event) {
             var location = this.lands.convertToNodeSpaceAR(event.getLocation());
             var gridPosition = window.CoordToGrid(location.x, location.y);
             if (gridPosition.x >= 0 && gridPosition.x < 3 && gridPosition.y >= 0 && gridPosition.y < 4) {
@@ -591,17 +943,15 @@ cc.Class({
                     this.selectLandIndex = landIndex;
                 }
             } else {
-                if (typeof this.lastHightLight !== 'undefined') {
-                    this.HightLightLandsPrefab(this.lastHightLight, landIndex, false);
-                    this.lastHightLight = undefined;
-                    this.selectLandIndex = -1;
-                }
+                this.OnCancelSelectLand();
             }
         }.bind(this));
+    },
 
-        this.cangKuSpr.node.on(cc.Node.EventType.TOUCH_END, function (event) {
-            GameEvent().SendEvent("OpenWarehouse");
-        });
+    WarpReloadData: function WarpReloadData() {
+        if (this.ReLoadFunc) {
+            this.ReLoadFunc();
+        }
     },
 
     ReLoadData: function ReLoadData() {
@@ -613,61 +963,92 @@ cc.Class({
         }
     },
 
+    VisitReLoadData: function VisitReLoadData() {
+        var gameData = window.GameData;
+        var landsData = gameData.visitUser.lands;
+        if (landsData === null) {
+            landsData = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
+        }
+        var children = this.lands.children;
+        for (var i = 0; i < children.length; ++i) {
+            this.InitLandsPrefab(children[i], landsData[i], landsData.length === i);
+        }
+    },
+
     InitLandsPrefab: function InitLandsPrefab(prefab, land, unlock) {
         if (typeof land === 'undefined') {
             prefab.getChildByName('lands2').active = true;
             prefab.getChildByName('lands1').active = false;
             prefab.getChildByName('plant').active = false;
+            prefab.getChildByName('disaster').active = false;
+            prefab.getChildByName('time').active = false;
         } else {
             prefab.getChildByName('lands2').active = false;
             prefab.getChildByName('lands1').active = true;
+            prefab.getChildByName('disaster').active = false;
+            prefab.getChildByName('time').active = false;
 
             if (land.state === 0) {
                 prefab.getChildByName('plant').active = false;
-                prefab.getChildByName('time').active = false;
             } else if (land.state === 1) {
                 prefab.getChildByName('plant').active = true;
 
                 var seedCfg = Table.GetEntry("plant", land.seedId);
                 if (seedCfg) {
+
+                    var disasterCfg = Table.GetEntry("disaster", seedCfg.disasterId);
+                    if (disasterCfg === null) return;
+
                     var timeNode = prefab.getChildByName('time');
                     timeNode.active = true;
                     var timeLabel = timeNode.getComponent(cc.Label);
 
-                    var reduceTime = 0;
-                    if (typeof land.reduceTime !== 'undefined') {
-                        for (var i = 0; i < land.reduceTime.length; ++i) {
-                            reduceTime += land.reduceTime[i];
-                        }
+                    if (typeof land.disasterTime !== 'undefined' && typeof land.clearDisasterTime === 'undefined') {
+                        prefab.getChildByName('disaster').active = true;
+                        var sp = prefab.getChildByName('disaster').getComponent(cc.Sprite);
+
+                        var url = "disaster" + land.disasterType;
+                        cc.loader.loadRes(url, cc.SpriteFrame, function (err, spriteFrame) {
+                            sp.spriteFrame = spriteFrame;
+                        });
                     }
 
-                    var now = new Date().getTime();
-                    if (now > land.sowTime + (seedCfg.time.amount - reduceTime) * MinuteToMicroSecond) {
+                    var disasterTime = typeof land.disasterTime !== 'undefined' && land.disasterType === 2 || land.disasterType === 3 ? land.disasterTime : null;
+                    var reduceMinuteArray = typeof land.reduceTime === 'undefined' ? [0, 0, 0] : land.reduceTime;
+                    var nowTime = new Date().getTime();
+                    var rs = IsMatured(reduceMinuteArray, nowTime, land.sowTime, disasterTime, seedCfg.time.part, disasterCfg.effect2, land.clearDisasterTime);
+
+                    var plantSp = prefab.getChildByName("plant").getComponent(cc.Sprite);
+                    var plantImagPath = "plant/" + seedCfg.time.images[0];
+                    if (rs[0]) {
+                        var cast = GetDisasterCast(land, disasterCfg, seedCfg);
                         // 植物已经成熟
-                        timeLabel.string = "植物已经成熟";
+                        var count = typeof land.stealCount === 'undefined' ? seedCfg.output : seedCfg.output - land.stealCount;
+                        timeLabel.string = "植物已经成熟\n" + "(" + (count - cast) + "/" + seedCfg.output + ")";
+                        plantImagPath = "plant/" + seedCfg.time.images[2];
                     } else {
-                        var remainingTime = seedCfg.time.amount * MinuteToMicroSecond - (now - land.sowTime);
-                        remainingTime -= reduceTime * MinuteToMicroSecond;
-                        var partId = 0;
-                        for (var j = seedCfg.time.part.length - 1; j >= 0; --j) {
-                            if (remainingTime > seedCfg.time.part[j] * MinuteToMicroSecond) {
-                                remainingTime -= seedCfg.time.part[j] * MinuteToMicroSecond;
-                            } else {
-                                partId = j;
-                                break;
-                            }
-                        }
+                        var partId = rs[1];
+                        var remainingTime = rs[2];
+
                         var state;
                         if (partId === 0) {
                             state = "发芽";
+                            plantImagPath = "plant/" + seedCfg.time.images[0];
                         } else if (partId == 1) {
                             state = "开花";
+                            plantImagPath = "plant/" + seedCfg.time.images[1];
                         } else {
                             state = "结果";
+                            plantImagPath = "plant/" + seedCfg.time.images[1];
                         }
 
-                        timeLabel.string = "剩余" + Math.floor(remainingTime / HourToMicroSecond) + "小时" + Math.floor(remainingTime % HourToMicroSecond / MinuteToMicroSecond) + "分钟" + state;
+                        var hours = Math.floor(remainingTime / HourToMinute);
+
+                        timeLabel.string = "剩余" + (hours > 0 ? hours + "小时" : "") + Math.floor(remainingTime % HourToMinute) + "分钟" + state;
                     }
+                    cc.loader.loadRes(plantImagPath, cc.SpriteFrame, function (err, spriteFrame) {
+                        plantSp.spriteFrame = spriteFrame;
+                    });
                 }
             } else if (land.state === 2) {
                 var timeNode = prefab.getChildByName('time');
@@ -676,6 +1057,13 @@ cc.Class({
                 timeLabel.string = "果实已收割";
 
                 prefab.getChildByName('plant').active = true;
+
+                var seedCfg = Table.GetEntry("plant", land.seedId);
+                var plantSp = prefab.getChildByName("plant").getComponent(cc.Sprite);
+                var plantImagPath = "plant/" + seedCfg.time.images[3];
+                cc.loader.loadRes(plantImagPath, cc.SpriteFrame, function (err, spriteFrame) {
+                    plantSp.spriteFrame = spriteFrame;
+                });
             }
         }
 
@@ -695,7 +1083,7 @@ cc.Class({
                 lands2.getComponent("cc.Sprite").dstBlendFactor = cc.BlendFunc.BlendFactor.ONE;
             }
 
-            this.OperatorLands(prefab, landIndex);
+            this.WrapOperatorLands(prefab, landIndex);
         } else {
             lands1 = prefab.getChildByName('lands1');
             if (lands1.active) {
@@ -710,11 +1098,18 @@ cc.Class({
         }
     },
 
+    WrapOperatorLands: function WrapOperatorLands(prefab, landIndex) {
+        if (this.OperatorFunc) {
+            this.OperatorFunc(prefab, landIndex);
+        }
+    },
+
     // 操作土地 
-    OperatorLands: function OperatorLands(prefab, landIndex) {
+    OperatorSelfLands: function OperatorSelfLands(prefab, landIndex) {
         var gameData = window.GameData;
-        if (gameData.lands.length > landIndex) {
-            var land = gameData.lands[landIndex];
+        var lands = gameData.lands;
+        if (lands.length > landIndex) {
+            var land = lands[landIndex];
             var landOperator = prefab.getChildByName('operator');
             landOperator.active = true;
             var prefabBtn;
@@ -722,6 +1117,13 @@ cc.Class({
                 // 播种
                 prefabBtn = this.CreateOpertorButton(enum_opbtn_sow);
                 landOperator.addChild(prefabBtn);
+
+                var landCfg = Table.GetEntry("landsLevel", land.level + 1);
+                if (landCfg && landCfg.minLevel <= gameData.GetLevel() && landCfg.landsNumber <= lands.length) {
+                    // 升级
+                    prefabBtn = this.CreateOpertorButton(enum_opbtn_upgread);
+                    landOperator.addChild(prefabBtn);
+                }
             } else if (land.state === enum_landsState_grow) {
                 // 信息 施肥 铲地
                 prefabBtn = this.CreateOpertorButton(enum_opbtn_info);
@@ -730,17 +1132,32 @@ cc.Class({
                 var seedCfg = Table.GetEntry("plant", land.seedId);
                 if (seedCfg) {
 
-                    var reduceTime = 0;
-                    if (typeof land.reduceTime !== 'undefined') {
-                        for (var i = 0; i < land.reduceTime.length; ++i) {
-                            reduceTime += land.reduceTime[i];
+                    var disasterCfg = Table.GetEntry("disaster", seedCfg.disasterId);
+                    if (disasterCfg === null) return;
+
+                    if (typeof land.disasterType !== 'undefined' && typeof land.clearDisasterTime === 'undefined') {
+                        if (land.disasterType === 1) {
+                            prefabBtn = this.CreateOpertorButton(enum_opbtn_debug);
+                            landOperator.addChild(prefabBtn);
+                        } else if (land.disasterType === 2) {
+                            prefabBtn = this.CreateOpertorButton(enum_opbtn_water);
+                            landOperator.addChild(prefabBtn);
+                        } else if (land.disasterType === 3) {
+                            prefabBtn = this.CreateOpertorButton(enum_opbtn_extraNutrition);
+                            landOperator.addChild(prefabBtn);
                         }
                     }
 
-                    var now = new Date().getTime();
-                    if (now > land.sowTime + (seedCfg.time.amount - reduceTime) * MinuteToMicroSecond) {
-                        prefabBtn = this.CreateOpertorButton(enum_opbtn_harvest);
-                        landOperator.addChild(prefabBtn);
+                    var disasterTime = typeof land.disasterTime !== 'undefined' && land.disasterType === 2 || land.disasterType === 3 ? land.disasterTime : null;
+                    var reduceMinuteArray = typeof land.reduceTime === 'undefined' ? [0, 0, 0] : land.reduceTime;
+                    var nowTime = new Date().getTime();
+                    var rs = IsMatured(reduceMinuteArray, nowTime, land.sowTime, disasterTime, seedCfg.time.part, disasterCfg.effect2, land.clearDisasterTime);
+
+                    if (rs[0]) {
+                        if (!(typeof land.disasterType !== 'undefined' && typeof land.clearDisasterTime === 'undefined')) {
+                            prefabBtn = this.CreateOpertorButton(enum_opbtn_harvest);
+                            landOperator.addChild(prefabBtn);
+                        }
                     } else {
                         prefabBtn = this.CreateOpertorButton(enum_opbtn_manure);
                         landOperator.addChild(prefabBtn);
@@ -768,6 +1185,52 @@ cc.Class({
         }
     },
 
+    OperatorVisiUserLands: function OperatorVisiUserLands(prefab, landIndex) {
+        var gameData = window.GameData;
+        var visitUserlands = gameData.visitUser.lands;
+        if (typeof visitUserlands !== 'undefined' && visitUserlands !== null && visitUserlands.length > landIndex) {
+            var land = visitUserlands[landIndex];
+            var landOperator = prefab.getChildByName('operator');
+            landOperator.active = true;
+            var prefabBtn;
+            if (land.state === enum_landsState_idle) {} else if (land.state === enum_landsState_grow) {
+                // 信息 除灾 偷盗 
+                prefabBtn = this.CreateOpertorButton(enum_opbtn_info);
+                landOperator.addChild(prefabBtn);
+
+                var seedCfg = Table.GetEntry("plant", land.seedId);
+                if (seedCfg) {
+
+                    var disasterCfg = Table.GetEntry("disaster", seedCfg.disasterId);
+                    if (disasterCfg === null) return;
+
+                    if (typeof land.disasterType !== 'undefined' && typeof land.clearDisasterTime === 'undefined') {
+                        if (land.disasterType === 1) {
+                            prefabBtn = this.CreateOpertorButton(enum_opbtn_debug);
+                            landOperator.addChild(prefabBtn);
+                        } else if (land.disasterType === 2) {
+                            prefabBtn = this.CreateOpertorButton(enum_opbtn_water);
+                            landOperator.addChild(prefabBtn);
+                        } else if (land.disasterType === 3) {
+                            prefabBtn = this.CreateOpertorButton(enum_opbtn_extraNutrition);
+                            landOperator.addChild(prefabBtn);
+                        }
+                    }
+
+                    var disasterTime = typeof land.disasterTime !== 'undefined' && land.disasterType === 2 || land.disasterType === 3 ? land.disasterTime : null;
+                    var reduceMinuteArray = typeof land.reduceTime === 'undefined' ? [0, 0, 0] : land.reduceTime;
+                    var nowTime = new Date().getTime();
+                    var rs = IsMatured(reduceMinuteArray, nowTime, land.sowTime, disasterTime, seedCfg.time.part, disasterCfg.effect2, land.clearDisasterTime);
+
+                    if (rs[0]) {
+                        prefabBtn = this.CreateOpertorButton(enum_opbtn_steal);
+                        landOperator.addChild(prefabBtn);
+                    }
+                }
+            }
+        }
+    },
+
     // 取消土地操作
     CancelOperatorLands: function CancelOperatorLands(prefab) {
         var landOperator = prefab.getChildByName('operator');
@@ -777,6 +1240,17 @@ cc.Class({
 
     // 创建操作按钮
     CreateOpertorButton: function CreateOpertorButton(type) {
+
+        var ChangeButtonImage = function ChangeButtonImage(button, imagPath) {
+            var buttonCm = button.getComponent("cc.Button");
+            cc.loader.loadRes(imagPath, cc.SpriteFrame, function (err, spriteFrame) {
+                this.normalSprite = spriteFrame;
+                this.pressedSprite = spriteFrame;
+                this.hoverSprite = spriteFrame;
+                this.disabledSprite = spriteFrame;
+            }.bind(buttonCm));
+        };
+
         var prefabBtn = null;
         var label;
         if (type === enum_opbtn_sow) {
@@ -799,10 +1273,13 @@ cc.Class({
             // 铲除植物
             prefabBtn = cc.instantiate(this.opertorBtnPrefab);
             label = prefabBtn.getComponent('cc.Button').node.getChildByName('Label');
-            label.getComponent('cc.Label').string = "铲除植物";
+            //label.getComponent('cc.Label').string = "铲除植物";
             prefabBtn.on('click', function (event) {
                 this.OnUserRemovePlant();
             }.bind(this));
+
+            label.active = false;
+            ChangeButtonImage(prefabBtn, "operate/chandi");
         } else if (type === enum_opbtn_manure) {
             // 施肥
             prefabBtn = cc.instantiate(this.opertorBtnPrefab);
@@ -811,6 +1288,9 @@ cc.Class({
             prefabBtn.on('click', function (event) {
                 GameEvent().SendEvent("OpenPackage", "manure");
             });
+
+            label.active = false;
+            ChangeButtonImage(prefabBtn, "operate/shifei");
         } else if (type === enum_opbtn_harvest) {
             // 摘取果实
             prefabBtn = cc.instantiate(this.opertorBtnPrefab);
@@ -819,12 +1299,54 @@ cc.Class({
             prefabBtn.on('click', function (event) {
                 this.OnUserHarvest();
             }.bind(this));
+
+            label.active = false;
+            ChangeButtonImage(prefabBtn, "operate/quanShou");
         } else if (type === enum_opbtn_water) {
             // 浇水
-        } else if (type === enum_opbtn_degrass) {
-            // 除草
+            prefabBtn = cc.instantiate(this.opertorBtnPrefab);
+            label = prefabBtn.getComponent('cc.Button').node.getChildByName('Label');
+            label.getComponent('cc.Label').string = "浇水";
+            prefabBtn.on('click', function (event) {
+                this.OnWrapClearDisaster();
+            }.bind(this));
+
+            label.active = false;
+            ChangeButtonImage(prefabBtn, "operate/jiaoshui");
+        } else if (type === enum_opbtn_extraNutrition) {
+            // 补充营养
+            prefabBtn = cc.instantiate(this.opertorBtnPrefab);
+            label = prefabBtn.getComponent('cc.Button').node.getChildByName('Label');
+            label.getComponent('cc.Label').string = "补充营养";
+            prefabBtn.on('click', function (event) {
+                this.OnWrapClearDisaster();
+            }.bind(this));
         } else if (type === enum_opbtn_debug) {
             // 除虫
+            prefabBtn = cc.instantiate(this.opertorBtnPrefab);
+            label = prefabBtn.getComponent('cc.Button').node.getChildByName('Label');
+            label.getComponent('cc.Label').string = "除虫";
+            prefabBtn.on('click', function (event) {
+                this.OnWrapClearDisaster();
+            }.bind(this));
+
+            label.active = false;
+            ChangeButtonImage(prefabBtn, "operate/chuchong");
+        } else if (type === enum_opbtn_steal) {
+            // 补充营养
+            prefabBtn = cc.instantiate(this.opertorBtnPrefab);
+            label = prefabBtn.getComponent('cc.Button').node.getChildByName('Label');
+            label.getComponent('cc.Label').string = "偷盗";
+            prefabBtn.on('click', function (event) {
+                this.OnUserVisitSteal();
+            }.bind(this));
+        } else if (type === enum_opbtn_upgread) {
+            prefabBtn = cc.instantiate(this.opertorBtnPrefab);
+            label = prefabBtn.getComponent('cc.Button').node.getChildByName('Label');
+            label.getComponent('cc.Label').string = "升级";
+            prefabBtn.on('click', function (event) {
+                this.OnLandsUpgread();
+            }.bind(this));
         }
 
         return prefabBtn;
@@ -876,8 +1398,133 @@ cc.Class({
             var msg = JSON.stringify(obj);
             GameSocket().Send(msg);
         }
-    }
+    },
 
+    OnUserVisitSteal: function OnUserVisitSteal(event) {
+        if (this.selectLandIndex >= 0) {
+            this.CancelOperatorLands(this.lastHightLight);
+            var landIndex = this.selectLandIndex;
+
+            var gameData = window.GameData;
+            var userId = gameData.visitUser.userid;
+
+            var obj = { type: 'visitSteal', visitUserId: userId, landIndex: landIndex };
+            var msg = JSON.stringify(obj);
+            GameSocket().Send(msg);
+        }
+    },
+
+    OnWrapClearDisaster: function OnWrapClearDisaster(event) {
+        if (this.OnClearDisasterFunc) {
+            this.OnClearDisasterFunc(event);
+        }
+    },
+
+    OnClearDisaster: function OnClearDisaster(event) {
+        if (this.selectLandIndex >= 0) {
+            this.CancelOperatorLands(this.lastHightLight);
+            var landIndex = this.selectLandIndex;
+
+            var obj = { type: 'clearDisaster', landIndex: landIndex };
+            var msg = JSON.stringify(obj);
+            GameSocket().Send(msg);
+        }
+    },
+
+    OnClearVisitUserDisaster: function OnClearVisitUserDisaster(event) {
+        if (this.selectLandIndex >= 0) {
+            this.CancelOperatorLands(this.lastHightLight);
+            var landIndex = this.selectLandIndex;
+
+            var gameData = window.GameData;
+            var userId = gameData.visitUser.userid;
+
+            var obj = { type: 'visitClearDisaster', visitUserId: userId, landIndex: landIndex };
+            var msg = JSON.stringify(obj);
+            GameSocket().Send(msg);
+        }
+    },
+
+    OnLandsUpgread: function OnLandsUpgread(event) {
+        if (this.selectLandIndex >= 0) {
+            this.CancelOperatorLands(this.lastHightLight);
+            var landIndex = this.selectLandIndex;
+
+            var obj = { type: 'upgradeLands', landIndex: landIndex };
+            var msg = JSON.stringify(obj);
+            GameSocket().Send(msg);
+        }
+    },
+
+    // called every frame, uncomment this function to activate update callback
+    update: function update(dt) {
+
+        if (typeof this.interval === 'undefined') {
+            this.interval = 0;
+        }
+
+        this.interval += dt;
+        var refreshTime = this.refreshSecond / 60;
+        if (this.interval > refreshTime) {
+            if (this.ReLoadFunc) {
+                this.ReLoadFunc();
+            }
+            this.interval -= refreshTime;
+        }
+    }
+});
+
+cc._RFpop();
+},{}],"getLogs":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, '9f16fhfDRVO/5jhAu5TSSaM', 'getLogs');
+// script\handler\getLogs.js
+
+"use strict";
+
+var MessageHandler = require("msgHandler");
+var getLogsSuccess = {};
+getLogsSuccess['interest'] = "getLogsSuccess";
+getLogsSuccess['Process'] = function (message) {
+    var gameData = window.GameData;
+    gameData.logs = message.logs.slice();
+    GameEvent().SendEvent("UpdateLogs");
+};
+MessageHandler.Add(getLogsSuccess);
+
+cc._RFpop();
+},{"msgHandler":"msgHandler"}],"goBack":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, 'fcc0bo3P7ZASLOdUssCc8Qe', 'goBack');
+// script\ui\goBack.js
+
+"use strict";
+
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        goBackBtn: cc.Button
+    },
+
+    // use this for initialization
+    onLoad: function onLoad() {
+        this.goBackBtn.node.on('click', this.OnGoBack, this);
+    },
+
+    OnShow: function OnShow() {
+        this.node.active = true;
+    },
+
+    OnHide: function OnHide() {
+        this.node.active = false;
+    },
+
+    OnGoBack: function OnGoBack() {
+        GameEvent().SendEvent("EnterHome"); // 进入自己农场
+        GameEvent().SendEvent("UpdateLands");
+        GameEvent().SendEvent("UpdateUserInfo");
+    }
 });
 
 cc._RFpop();
@@ -897,7 +1544,36 @@ harvestSuccess['Process'] = function (message) {
 MessageHandler.Add(harvestSuccess);
 
 cc._RFpop();
-},{"msgHandler":"msgHandler"}],"info":[function(require,module,exports){
+},{"msgHandler":"msgHandler"}],"hecheng":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, 'f05cdaEuUNHoKiUiVQR1TKt', 'hecheng');
+// script\ui\hecheng.js
+
+"use strict";
+
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        propItem: cc.Prefab,
+        cailiaoItem: cc.Prefab,
+        propItemScroll: cc.ScrollView,
+        duihuanBtn: cc.Button,
+        propNameLab: cc.Label,
+        propImag: cc.Sprite,
+        buzutishiLab: cc.Label,
+        hechengGoldLab: cc.Label,
+        cailiaoScroll: cc.ScrollView,
+        hechengBtn: cc.Button
+    },
+
+    // use this for initialization
+    onLoad: function onLoad() {}
+
+});
+
+cc._RFpop();
+},{}],"info":[function(require,module,exports){
 "use strict";
 cc._RFpush(module, '500c7bFHShCj5AZu+ZpNbsG', 'info');
 // script\ui\info.js
@@ -911,13 +1587,14 @@ cc.Class({
         roleName: cc.Label,
         level: cc.Label,
         money: cc.Label,
-        expProgress: cc.ProgressBar
+        expProgress: cc.ProgressBar,
+        bgSprite: cc.Sprite
     },
 
     // use this for initialization
     onLoad: function onLoad() {
-        GameEvent().OnEvent("UpdateBaseData", this.ReLoadData, this);
-        GameEvent().OnEvent("UpdateUserInfo", this.ReLoadData, this);
+        GameEvent().OnEvent("EnterHome", this.OnEnterHome, this); // 进入自己农场
+        GameEvent().OnEvent("VisitHome", this.OnVisitHome, this); // 访问别人农场
     },
 
     OnShow: function OnShow() {
@@ -928,17 +1605,54 @@ cc.Class({
         this.node.active = false;
     },
 
+    OnClickBg: function OnClickBg() {
+        GameEvent().SendEvent("OpenDetail");
+    },
+
+    OnEnterHome: function OnEnterHome() {
+        GameEvent().OnEvent("UpdateBaseData", this.ReLoadData, this);
+        GameEvent().OnEvent("UpdateUserInfo", this.ReLoadData, this);
+
+        GameEvent().OffEvent("UpdateVisitInfo", this.VisitReLoadData, this);
+
+        this.bgSprite.node.on(cc.Node.EventType.TOUCH_END, this.OnClickBg, this);
+    },
+
+    OnVisitHome: function OnVisitHome() {
+        GameEvent().OffEvent("UpdateBaseData", this.ReLoadData, this);
+        GameEvent().OffEvent("UpdateUserInfo", this.ReLoadData, this);
+
+        GameEvent().OnEvent("UpdateVisitInfo", this.VisitReLoadData, this);
+
+        this.bgSprite.node.off(cc.Node.EventType.TOUCH_END, this.OnClickBg, this);
+    },
+
     ReLoadData: function ReLoadData() {
         var gameData = window.GameData;
-        this.roleName.string = gameData.GetUserName();
+        this.roleName.string = gameData.GetUserName() + "的家园";
         this.money.string = gameData.GetMoney();
         this.level.string = "Lv." + gameData.GetLevel();
         this.expProgress.progress = gameData.GetLevelExp() / gameData.GetLevelExpMax();
-        this.expProgress.totalLength = gameData.GetLevelExpMax();
         var text = this.expProgress.node.getChildByName("value").getComponent('cc.Label');
         text.string = gameData.GetLevelExp() + "/" + gameData.GetLevelExpMax();
+    },
+
+    VisitReLoadData: function VisitReLoadData(event) {
+        var userData = event.detail;
+        var gameData = window.GameData;
+
+        this.roleName.string = userData.username + "的家园";
+        this.money.string = userData.money;
+        this.level.string = "Lv." + gameData.GetLevelByExp(userData.experience);
+        this.expProgress.progress = gameData.GetLevelExpByExp(userData.experience) / gameData.GetLevelExpMax();
+        var text = this.expProgress.node.getChildByName("value").getComponent('cc.Label');
+        text.string = gameData.GetLevelExpByExp(userData.experience) + "/" + gameData.GetLevelExpMax();
     }
 
+    // called every frame, uncomment this function to activate update callback
+    // update: function (dt) {
+
+    // },
 });
 
 cc._RFpop();
@@ -1042,7 +1756,11 @@ cc.Class({
         buySeedPnl: cc.Node,
         buyPropPnl: cc.Node,
         sellFruitPnl: cc.Node,
-        warehousePnl: cc.Node
+        warehousePnl: cc.Node,
+        socialPnl: cc.Node,
+        visitPnl: cc.Node,
+        goBackPnl: cc.Node,
+        detailPnl: cc.Node
     },
 
     // use this for initialization
@@ -1055,7 +1773,7 @@ cc.Class({
     },
 
     start: function start() {
-        GameSocket().Connect("localhost", 34443);
+        GameSocket().Connect(window.GameHost, window.GameProt);
         GameEvent().OnEvent("connectedServer", this.OnConectServe, this);
         GameEvent().OnEvent("GoRegister", this.OnGoRegister, this);
         GameEvent().OnEvent("LoginSuccess", this.OnLoginSuccess, this);
@@ -1069,6 +1787,24 @@ cc.Class({
         GameEvent().OnEvent("OpenBuyProperty", this.OnOpenBuyProperty, this);
         GameEvent().OnEvent("OpenWarehouse", this.OnOpenWarehouse, this);
         GameEvent().OnEvent("OpenSellFruit", this.OnOpenSellFruit, this);
+        GameEvent().OnEvent("OpenDetail", this.OnOpenDetail, this);
+
+        GameEvent().OnEvent("EnterHome", this.OnEnterHome, this); // 进入自己农场  
+        GameEvent().OnEvent("VisitHome", this.OnVisitHome, this); // 访问别人农场
+    },
+
+    OnEnterHome: function OnEnterHome() {
+        this.visitPnl.getComponent("visit").OnHide();
+        this.goBackPnl.getComponent("goBack").OnHide();
+
+        this.toolbarPnl.getComponent("toolbar").OnShow();
+    },
+
+    OnVisitHome: function OnVisitHome() {
+        this.visitPnl.getComponent("visit").OnShow();
+        this.goBackPnl.getComponent("goBack").OnShow();
+
+        this.toolbarPnl.getComponent("toolbar").OnHide();
     },
 
     HideAllPnl: function HideAllPnl() {
@@ -1099,6 +1835,18 @@ cc.Class({
         this.HideAllPnl();
         this.infoPnl.getComponent("info").OnShow();
         this.toolbarPnl.getComponent("toolbar").OnShow();
+        this.socialPnl.getComponent("social").OnShow();
+
+        GameEvent().SendEvent("EnterHome");
+
+        //var obj = { type: 'addFriend', addUserId:11 };
+        //var obj = { type: 'removeFriend', removeUserId:11 };
+        //var msg = JSON.stringify(obj);
+        //GameSocket().Send(msg);
+
+        //var obj = { type: 'buyItems', kinds : 2, buyId:7, buyCount : 7 };
+        //var msg = JSON.stringify(obj);
+        //GameSocket().Send(msg);
     },
 
     OnCancelRegister: function OnCancelRegister(event) {
@@ -1118,6 +1866,8 @@ cc.Class({
 
     OnOpenShop: function OnOpenShop(event) {
         this.shopPnl.getComponent("shop").OnShow();
+
+        GameEvent().SendEvent("NeedCancelSelectLand");
     },
 
     OnOpenPackage: function OnOpenPackage(event) {
@@ -1141,14 +1891,25 @@ cc.Class({
     OnOpenWarehouse: function OnOpenWarehouse(event) {
         var script = this.warehousePnl.getComponent("warehouse");
         script.OnShow();
+
+        GameEvent().SendEvent("NeedCancelSelectLand");
     },
 
     OnOpenSellFruit: function OnOpenSellFruit(event) {
         var script = this.sellFruitPnl.getComponent("sellFruit");
         script.OnShow();
         script.Setup(event.detail);
+    },
+
+    OnOpenDetail: function OnOpenDetail(event) {
+        var script = this.detailPnl.getComponent("detail");
+        script.OnShow();
     }
 
+    // called every frame, uncomment this function to activate update callback
+    // update: function (dt) {
+
+    // },
 });
 
 cc._RFpop();
@@ -1168,7 +1929,25 @@ manureSuccess['Process'] = function (message) {
 MessageHandler.Add(manureSuccess);
 
 cc._RFpop();
-},{"msgHandler":"msgHandler"}],"msgHandler":[function(require,module,exports){
+},{"msgHandler":"msgHandler"}],"maskLayer":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, 'b1c74rq4bhEX4QlqH8KfxeH', 'maskLayer');
+// script\ui\maskLayer.js
+
+"use strict";
+
+cc.Class({
+    extends: cc.Component,
+
+    // use this for initialization
+    onLoad: function onLoad() {
+
+        this.node.on(cc.Node.EventType.TOUCH_END, function (event) {});
+    }
+});
+
+cc._RFpop();
+},{}],"msgHandler":[function(require,module,exports){
 "use strict";
 cc._RFpush(module, 'bf199399u1H4Z4f07UIDO9L', 'msgHandler');
 // script\msgHandler.js
@@ -1205,7 +1984,34 @@ cc._RFpush(module, 'bf199399u1H4Z4f07UIDO9L', 'msgHandler');
 })();
 
 cc._RFpop();
-},{}],"notifyText":[function(require,module,exports){
+},{}],"neighbourList":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, 'cf5e4dgpbZOS7sEK+/Nrr8r', 'neighbourList');
+// script\handler\neighbourList.js
+
+"use strict";
+
+var MessageHandler = require("msgHandler");
+var neighbourList = {};
+neighbourList['interest'] = "neighbourList";
+neighbourList['Process'] = function (message) {
+    var gameData = window.GameData;
+    gameData.neighbourList = message.list.slice();
+    GameEvent().SendEvent("UpdateNeighbourList");
+};
+MessageHandler.Add(neighbourList);
+
+var neighbourListSuccess = {};
+neighbourListSuccess['interest'] = "neighbourListSuccess";
+neighbourListSuccess['Process'] = function (message) {
+    var gameData = window.GameData;
+    gameData.neighbourList = message.list.slice();
+    GameEvent().SendEvent("UpdateNeighbourList");
+};
+MessageHandler.Add(neighbourListSuccess);
+
+cc._RFpop();
+},{"msgHandler":"msgHandler"}],"notifyText":[function(require,module,exports){
 "use strict";
 cc._RFpush(module, '6311aEnqulPi492lRJveIXd', 'notifyText');
 // script\notifyText.js
@@ -1253,9 +2059,9 @@ var NotifyText = cc.Class({
 
         var size = cc.director.getWinSize();
         var move = cc.moveBy(2, cc.p(0, size.height / 8 * 3));
-        var fadeOunt = cc.fadeOut(1.0);
+        var fadeOut = cc.fadeOut(1.0);
         var callback = cc.callFunc(this._RemoveText, this, notify);
-        var action = cc.sequence(move, fadeOunt, callback);
+        var action = cc.sequence(move, fadeOut, callback);
         notify.runAction(action);
     },
 
@@ -1336,7 +2142,7 @@ cc.Class({
                     var itemId, config, prefab;
                     for (var key in package_[index]) {
                         if (package_[index][key] > 0) {
-                            itemId = key;
+                            itemId = parseInt(key);
                             config = Table.GetEntry(group[index][0], itemId);
                             prefab = cc.instantiate(group[index][1]);
                             group[index][2].bind(this)(prefab, config, package_[index][key]);
@@ -1422,6 +2228,34 @@ cc.Class({
     // update: function (dt) {
 
     // },
+});
+
+cc._RFpop();
+},{}],"petLayer":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, 'c68f40tLqlPFbihPADRlB+R', 'petLayer');
+// script\ui\petLayer.js
+
+"use strict";
+
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        petItemPrefab: cc.Prefab,
+        petScorllView: cc.ScrollView,
+        petNameLab: cc.Label,
+        petImag: cc.Sprite,
+        petInfo: cc.Label,
+        xufeiBtn: cc.Button,
+        tihuanBtn: cc.Button,
+        buyBtn: cc.Button,
+        closeBtn: cc.Button
+    },
+
+    // use this for initialization
+    onLoad: function onLoad() {}
+
 });
 
 cc._RFpop();
@@ -1614,12 +2448,10 @@ cc.Class({
 
     OnSell: function OnSell(event) {
         var gameData = window.GameData;
-        if (gameData.GetMoney() < this.sellCount * this.sellPrice) {
-            var errorEntry = Table.GetEntry("error", 6);
+        if (gameData.package[2][this.fruitId] < this.sellCount) {
+            var errorEntry = Table.GetEntry("error", 17);
             if (errorEntry) {
                 GameNotify().AddText(errorEntry.description, window.ErrorNotifyColor);
-            } else {
-                GameNotify().AddText("金币不足!", window.ErrorNotifyColor);
             }
             return;
         }
@@ -1693,6 +2525,7 @@ cc.Class({
     properties: {
         shopSeedItemPrefab: cc.Prefab,
         shopPropItemPrefab: cc.Prefab,
+        shopPetItemPrefab: cc.Prefab,
         scrollView: cc.ScrollView,
 
         radioButton: {
@@ -1702,7 +2535,16 @@ cc.Class({
 
         _currentToggle: cc.Toggle,
 
-        closeBtn: cc.Button
+        closeBtn: cc.Button,
+
+        itemImag: cc.Sprite,
+        itemNameLab: cc.Label,
+        itemInfoLab: cc.Label,
+        itemNumLab: cc.Label,
+        itemSubBtn: cc.Button,
+        itemAddBtn: cc.Button,
+        itemGoldLab: cc.Label,
+        itemBuyBtn: cc.Button
     },
 
     // use this for initialization
@@ -1729,7 +2571,7 @@ cc.Class({
     Load: function Load() {
         var index = this.radioButton.indexOf(this._currentToggle);
         if (index >= 0) {
-            var group = new Array(["plant", this.shopSeedItemPrefab, this.InitSeedPrefab], ["property", this.shopPropItemPrefab, this.InitPropPrefab]);
+            var group = new Array(["plant", this.shopSeedItemPrefab, this.InitSeedPrefab], ["property", this.shopPropItemPrefab, this.InitPropPrefab], ["pet", this.shopPetItemPrefab, this.InitPetPrefab]);
 
             var content = this.scrollView.content;
             content.removeAllChildren();
@@ -1771,6 +2613,12 @@ cc.Class({
     },
 
     InitPropPrefab: function InitPropPrefab(prefab, config) {
+        var iconSp = prefab.getChildByName("icon").getComponent("cc.Sprite");
+
+        cc.loader.loadRes(config.imagPath, cc.SpriteFrame, function (err, spriteFrame) {
+            this.spriteFrame = spriteFrame;
+        }.bind(iconSp));
+
         var name = prefab.getChildByName("name").getComponent('cc.Label');
         name.string = config.name;
         var money = prefab.getChildByName("money").getComponent('cc.Label');
@@ -1786,6 +2634,26 @@ cc.Class({
         GameEvent().SendEvent("OpenBuyProperty", config);
     },
 
+    InitPetPrefab: function InitPetPrefab(prefab, config) {
+        var iconSp = prefab.getChildByName("icon").getComponent("cc.Sprite");
+
+        cc.loader.loadRes(config.headImagPath, cc.SpriteFrame, function (err, spriteFrame) {
+            this.spriteFrame = spriteFrame;
+        }.bind(iconSp));
+
+        var name = prefab.getChildByName("name").getComponent('cc.Label');
+        name.string = config.name;
+
+        // 点击回调
+        prefab.on(cc.Node.EventType.TOUCH_END, function (event) {
+            this.OnOpenBuyPet(event.target.config);
+        }, this);
+    },
+
+    OnOpenBuyPet: function OnOpenBuyPet(config) {
+        GameEvent().SendEvent("OpenBuyPet", config);
+    },
+
     radioButtonClicked: function radioButtonClicked(toggle) {
         if (this._currentToggle !== toggle) {
             this._currentToggle = toggle;
@@ -1795,6 +2663,131 @@ cc.Class({
 
     OnClose: function OnClose() {
         this.OnHide();
+    }
+
+    // called every frame, uncomment this function to activate update callback
+    // update: function (dt) {
+
+    // },
+});
+
+cc._RFpop();
+},{}],"social":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, 'cba04NXrWNLzoiXEbjNHFfP', 'social');
+// script\ui\social.js
+
+"use strict";
+
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        radioButton: {
+            default: [],
+            type: cc.Toggle
+        },
+
+        flodButton: cc.Button,
+        scrollView: cc.ScrollView,
+        itemPrefab: cc.Prefab,
+
+        _currentToggle: cc.Toggle,
+        _flodState: cc.Integer
+    },
+
+    // use this for initialization
+    onLoad: function onLoad() {
+
+        this._flodState = 1;
+        this.flodButton.node.on('click', this.OnFold, this);
+        this.OnFold();
+
+        for (var i = 0; i < this.radioButton.length; ++i) {
+            if (this.radioButton[i].isChecked) {
+                this._currentToggle = this.radioButton[i];
+                break;
+            }
+        }
+
+        GameEvent().OnEvent("UpdateNeighbourList", this.Reload, this);
+        GameEvent().OnEvent("UpdateFriendsList", this.Reload, this);
+    },
+
+    OnShow: function OnShow() {
+        this.node.active = true;
+    },
+
+    OnHide: function OnHide() {
+        this.node.active = false;
+    },
+
+    radioButtonClicked: function radioButtonClicked(toggle) {
+        if (this._currentToggle !== toggle) {
+            this._currentToggle = toggle;
+            this.Reload();
+        }
+    },
+
+    OnFold: function OnFold() {
+        var widget;
+        if (this._flodState === 0) {
+            //widget = this.node.getComponent(cc.Widget);
+            //widget.right = -300;
+            this.node.x = 326;
+            this._flodState = 1;
+            this.scrollView.scrollToTop(0.1);
+        } else {
+            //widget = this.node.getComponent(cc.Widget);
+            //widget.right = 4;
+            this.node.x = 630;
+            this._flodState = 0;
+            this.scrollView.scrollToTop(0.1);
+        }
+    },
+
+    Reload: function Reload() {
+        var index = this.radioButton.indexOf(this._currentToggle);
+        if (index >= 0) {
+            var content = this.scrollView.content;
+            content.removeAllChildren();
+            var gameData = window.GameData;
+            var prefab, data, i;
+            if (index === 0) {
+                var neighbourList = gameData.neighbourList;
+                for (i = 0; i < neighbourList.length; ++i) {
+                    prefab = cc.instantiate(this.itemPrefab);
+                    data = neighbourList[i];
+                    this.InitItemPrefab(prefab, data);
+                    content.addChild(prefab);
+                }
+            } else if (index === 1) {
+                var friendsList = gameData.friendsList;
+                for (i = 0; i < friendsList.length; ++i) {
+                    prefab = cc.instantiate(this.itemPrefab);
+                    data = friendsList[i];
+                    this.InitItemPrefab(prefab, data);
+                    content.addChild(prefab);
+                }
+            }
+        }
+    },
+
+    InitItemPrefab: function InitItemPrefab(prefab, data) {
+        var name = prefab.getChildByName("name").getComponent('cc.Label');
+        name.string = data.username;
+        var level = prefab.getChildByName("level").getComponent('cc.Label');
+        level.string = "Lv." + GameData.GetLevelByExp(data.experience);
+        var btnNode = prefab.getChildByName('visit');
+        btnNode.userId = data.id;
+        btnNode.on('click', this.OnVisit, this);
+    },
+
+    OnVisit: function OnVisit(event) {
+        var userId = event.target.userId;
+        var obj = { type: 'visitHome', userId: userId };
+        var msg = JSON.stringify(obj);
+        GameSocket().Send(msg);
     }
 
     // called every frame, uncomment this function to activate update callback
@@ -1828,13 +2821,13 @@ var Socket = cc.Class({
         this.webSocket = null;
     },
 
-    Connect: function Connect(address, port) {
+    Connect: function Connect(address, port, router) {
         var self = this;
         if (self.webSocket) {
             return;
         } else {
             try {
-                var ws = new WebSocket("ws://" + address + ":" + port);
+                var ws = new WebSocket("ws://" + address + ":" + port + "/" + (typeof router !== "undefined" ? router : ""));
                 ws.onopen = function (event) {
                     self.connected = true;
                     self.webSocket = ws;
@@ -1957,6 +2950,22 @@ unlockLandsSuccess['Process'] = function (message) {
 MessageHandler.Add(unlockLandsSuccess);
 
 cc._RFpop();
+},{"msgHandler":"msgHandler"}],"upgradeLands":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, '2983awHQPpL1a9J7rfXByIH', 'upgradeLands');
+// script\handler\upgradeLands.js
+
+"use strict";
+
+var MessageHandler = require("msgHandler");
+var upgradeLandsSuccess = {};
+upgradeLandsSuccess['interest'] = "upgradeLandsSuccess";
+upgradeLandsSuccess['Process'] = function (message) {
+    GameNotify().AddText("土地升级成功!");
+};
+MessageHandler.Add(upgradeLandsSuccess);
+
+cc._RFpop();
 },{"msgHandler":"msgHandler"}],"userBaseData":[function(require,module,exports){
 "use strict";
 cc._RFpush(module, 'aac4bOG2OBAEZ78IJJ4C9ry', 'userBaseData');
@@ -2029,7 +3038,170 @@ userDataSync['Process'] = function (message) {
 MessageHandler.Add(userDataSync);
 
 cc._RFpop();
-},{"msgHandler":"msgHandler"}],"warehouse":[function(require,module,exports){
+},{"msgHandler":"msgHandler"}],"visitClearDisaster":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, '3a92bxVC2BOf6CA9lMNUD+N', 'visitClearDisaster');
+// script\handler\visitClearDisaster.js
+
+"use strict";
+
+var MessageHandler = require("msgHandler");
+var visitClearDisasterSuccess = {};
+visitClearDisasterSuccess['interest'] = "visitClearDisasterSuccess";
+visitClearDisasterSuccess['Process'] = function (message) {
+    var gameData = window.GameData;
+    var user = message;
+    var visitUserId = message.visitUserId;
+    var visitLands = message.lands;
+
+    if (message.disasterType === 1) {
+        GameNotify().AddText("除虫成功!");
+    } else if (message.disasterType === 2) {
+        GameNotify().AddText("浇水成功!");
+    } else if (message.disasterType === 3) {
+        GameNotify().AddText("营养添加成功!");
+    }
+
+    if (gameData.visitUser.userid === visitUserId) {
+        gameData.visitUser.lands = visitLands.slice();
+        GameEvent().SendEvent("VisitUserLands");
+    }
+};
+
+MessageHandler.Add(visitClearDisasterSuccess);
+
+cc._RFpop();
+},{"msgHandler":"msgHandler"}],"visitHome":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, '0772d7783hDhruxwTPM37Iz', 'visitHome');
+// script\handler\visitHome.js
+
+"use strict";
+
+var MessageHandler = require("msgHandler");
+var visitHomeSuccess = {};
+visitHomeSuccess['interest'] = "visitHomeSuccess";
+visitHomeSuccess['Process'] = function (message) {
+    var gameData = window.GameData;
+    var user = message;
+    gameData.visitUser = {
+        userid: user.userid,
+        username: user.username,
+        money: user.money,
+        experience: user.experience,
+        vip: user.vip,
+        lands: JSON.parse(user.lands)
+    };
+
+    GameEvent().SendEvent("VisitHome");
+    GameEvent().SendEvent("UpdateVisitInfo", gameData.visitUser);
+    GameEvent().SendEvent("VisitUserLands");
+};
+MessageHandler.Add(visitHomeSuccess);
+
+cc._RFpop();
+},{"msgHandler":"msgHandler"}],"visitSteal":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, '26b2f7dzYxAQZVXcUAMgKN9', 'visitSteal');
+// script\handler\visitSteal.js
+
+"use strict";
+
+var MessageHandler = require("msgHandler");
+var visitStealSuccess = {};
+visitStealSuccess['interest'] = "visitStealSuccess";
+visitStealSuccess['Process'] = function (message) {
+    var gameData = window.GameData;
+    var visitUserId = message.visitUserId;
+    var visitLands = message.lands;
+
+    GameNotify().AddText("偷取成功!");
+
+    if (gameData.visitUser.userid === visitUserId) {
+        gameData.visitUser.lands = visitLands.slice();
+        GameEvent().SendEvent("VisitUserLands");
+    }
+};
+MessageHandler.Add(visitStealSuccess);
+
+cc._RFpop();
+},{"msgHandler":"msgHandler"}],"visit":[function(require,module,exports){
+"use strict";
+cc._RFpush(module, '30115E4E6RNaIQ31YoiZqUh', 'visit');
+// script\ui\visit.js
+
+'use strict';
+
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        friendBtn: cc.Button,
+        messageBtn: cc.Button,
+        friendLabel: cc.Label
+    },
+
+    // use this for initialization
+    onLoad: function onLoad() {
+        this.friendBtn.node.on('click', this.OnFriendClick, this);
+        this.messageBtn.node.on('click', this.OnMessageClick, this);
+
+        GameEvent().OnEvent("UpdateFriendsList", this.UpdateFriendLabel, this);
+    },
+
+    OnShow: function OnShow() {
+        this.node.active = true;
+
+        this.UpdateFriendLabel();
+    },
+
+    OnHide: function OnHide() {
+        this.node.active = false;
+    },
+
+    OnFriendClick: function OnFriendClick() {
+        var gameData = window.GameData;
+        var obj,
+            isFriend,
+            userId = gameData.visitUser.userid;
+        isFriend = this.IsFriendOfVisit();
+        if (isFriend === false) {
+            obj = { type: 'addFriend', addUserId: userId };
+        } else {
+            obj = { type: 'removeFriend', removeUserId: userId };
+        }
+        var msg = JSON.stringify(obj);
+        GameSocket().Send(msg);
+    },
+
+    OnMessageClick: function OnMessageClick() {},
+
+    IsFriendOfVisit: function IsFriendOfVisit() {
+        var isFriend = false;
+        var gameData = window.GameData;
+        var userId = gameData.visitUser.userid;
+        var friendsList = gameData.friendsList;
+        for (var i = 0; i < friendsList.length; ++i) {
+            if (friendsList[i].id === userId) {
+                isFriend = true;
+                break;
+            }
+        }
+        return isFriend;
+    },
+
+    UpdateFriendLabel: function UpdateFriendLabel() {
+        var isFriend = this.IsFriendOfVisit();
+        if (isFriend) {
+            this.friendLabel.string = "解除\n好友";
+        } else {
+            this.friendLabel.string = "添加\n好友";
+        }
+    }
+});
+
+cc._RFpop();
+},{}],"warehouse":[function(require,module,exports){
 "use strict";
 cc._RFpush(module, '5f12bh6LmFEorn6viVVDOUf', 'warehouse');
 // script\ui\warehouse.js
@@ -2074,7 +3246,7 @@ cc.Class({
             var itemId, config, prefab;
             for (var key in package_[index]) {
                 if (package_[index][key] > 0) {
-                    itemId = key;
+                    itemId = parseInt(key);
                     config = Table.GetEntry("plant", itemId);
                     prefab = cc.instantiate(this.fruitPrefab);
                     this.InitFruitPrefab(prefab, config, package_[index][key]);
@@ -2109,4 +3281,4 @@ cc.Class({
 });
 
 cc._RFpop();
-},{}]},{},["AudioMng","ButtonScaler","Table","canvas","gameData","gameEvent","gameLayer","buyItemsHandler","error","harvestLands","loginHandler","manureLands","registerHander","removePlant","sellFruitHander","sowSeeds","unlockLands","userBaseData","userDataSync","msgHandler","notifyText","socket","buyProperty","buySeed","info","login","main","package","register","sell","sellFruit","shop","toolbar","warehouse"]);
+},{}]},{},["AudioMng","ButtonScaler","canvas","gameData","gameEvent","gameLayer","buyItemsHandler","clearDisaster","error","friendHandler","friendsList","getLogs","harvestLands","loginHandler","manureLands","neighbourList","registerHander","removePlant","sellFruitHander","sowSeeds","unlockLands","upgradeLands","userBaseData","userDataSync","visitClearDisaster","visitHome","visitSteal","msgHandler","notifyText","socket","buyProperty","buySeed","detail","duihuan","goBack","hecheng","info","login","main","maskLayer","package","petLayer","register","sell","sellFruit","shop","social","toolbar","visit","warehouse"]);

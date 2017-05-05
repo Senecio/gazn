@@ -18,7 +18,7 @@ MsgVisitSteal.Process = function(socket, message) {
     
     async.parallel([
         function(callback){
-            var cmd = "SELECT `lands` FROM `farm_game` WHERE userId=?";
+            var cmd = "SELECT `lands`,`pets` FROM `farm_game` WHERE userId=?";
             mysql.Query2(cmd, [visitUserId], function (results, fields) {
                 callback(null, results);
             });
@@ -71,6 +71,23 @@ MsgVisitSteal.Process = function(socket, message) {
                 return;
             }
             
+            var petKick = false;
+            var pets = JSON.parse(rs1[0].pets);
+            var petActive = Pet.HasActived(pets);
+            var petCarryback = -1;
+            if (petActive) {
+                var petCfg = table.GetEntry("pet", pets.activeId);
+                if (petCfg === null)
+                    return;
+                
+                if (Math.random() < petCfg.data[0]) {
+                    // 被狗咬了. 偷盗失败
+                    petKick = true;
+                    petCarryback = -2;
+                }
+            }
+            
+            
             var cast = 0;
             if (typeof land.disasterTime !== 'undefined' && 
                 typeof land.clearDisasterTime !== 'undefined' &&
@@ -92,9 +109,18 @@ MsgVisitSteal.Process = function(socket, message) {
             var get = seedCfg.output - cast;
             var canStealCount = get - stealCount - (seedCfg.output * 0.5);
             if (canStealCount > 0) {
-                canStealCount = Math.floor(Math.min(canStealCount, seedCfg.output * 0.25));
-                stealCount += canStealCount;
-                land.stealCount = stealCount;
+                if (false === petKick) {
+                    canStealCount = Math.floor(Math.min(canStealCount, seedCfg.output * 0.25));
+                    if (petActive) {
+                        // 如果宠物可用
+                        var count = Math.floor(Math.min(canStealCount, seedCfg.output * Math.max(0, 0.25 - petCfg.data[1])));
+                        petCarryback = canStealCount - count;
+                        canStealCount = count;
+                    }
+                    
+                    stealCount += canStealCount;
+                    land.stealCount = stealCount;
+                }
             } else {
                 MsgHandler.ErrorResponse(socket, 22); // 无可偷取.
                 return;
@@ -121,10 +147,14 @@ MsgVisitSteal.Process = function(socket, message) {
             
             async.parallel([
                 function(callback){
-                    // 更新背包信息. 
-                    Package.AddNewItem(userId, kinds, fruitId, canStealCount, function(rs) {
-                        callback(null, rs);
-                    });
+                    if (canStealCount > 0) {
+                        // 更新背包信息. 
+                        Package.AddNewItem(userId, kinds, fruitId, canStealCount, function(rs) {
+                            callback(null, rs);
+                        });
+                    }else {
+                        callback(null, true);
+                    }
                 },
                 function(callback){
                     // 更新土地信息.
@@ -138,10 +168,10 @@ MsgVisitSteal.Process = function(socket, message) {
                         if (callback) callback(false, 444444);
                         throw "!!!!!!!![收割]错误的结果!!!!!!!!";
                     } else {
-                        MsgVisitSteal.Success(socket, visitUserId, lands);
+                        MsgVisitSteal.Success(socket, visitUserId, lands, petKick);
                         User.SendDataSync(socket, ['package']);
                         // 添加日志
-                        HomeLog.AddSteal(visitUserId, now, userId, userName, fruitId, canStealCount, -1, null);
+                        HomeLog.AddSteal(visitUserId, now, userId, userName, fruitId, canStealCount, petCarryback, null);
                     }
                 }
             );
@@ -150,8 +180,8 @@ MsgVisitSteal.Process = function(socket, message) {
 }
 
 // 偷盗成功
-MsgVisitSteal.Success = function(socket, visitUserId, lands) {
-    var obj = { type : "visitStealSuccess",  visitUserId : visitUserId, lands : lands};
+MsgVisitSteal.Success = function(socket, visitUserId, lands, petKick) {
+    var obj = { type : "visitStealSuccess",  visitUserId : visitUserId, lands : lands, petKick : petKick};
     var msg = JSON.stringify(obj);
     socket.send(msg);
 }

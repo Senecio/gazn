@@ -68,7 +68,7 @@ Pet.prototype.Active = function(userId, pedId, callback)
                 return;
             }
             
-            var pet, find = false, now = (new Date()).getTime();;
+            var pet, find = false, now = (new Date()).getTime();
             for (var i = 0; i < pets.items.length; ++i) {
                 pet = pets.items[i];
                 if (pet.id === pedId && Pet.prototype.IsValid(pet, now)) {
@@ -97,5 +97,22 @@ Pet.prototype.IsValid = function(pet, nowTime) {
     if (pet.buyTime + pet.validTime > nowTime) {
         return true;
     }
+    return false;
+}
+
+
+// 宠物是否有效
+Pet.prototype.HasActived = function(pets) {
+    if (typeof pets.activeId !== 'undefined') 
+    {
+        var pet, now = (new Date()).getTime();
+        for (var i = 0; i < pets.items.length; ++i) {
+            pet = pets.items[i];
+            if (pet.id === pets.activeId) {
+                return Pet.prototype.IsValid(pet, now);
+            }
+        }
+    }
+
     return false;
 }
