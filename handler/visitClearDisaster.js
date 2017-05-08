@@ -65,12 +65,16 @@ MsgVisitClearDisaster.Process = function(socket, message) {
             }
             
             var seedCfg = table.GetEntry("plant", land.seedId);
-            if (seedCfg === null)
+            if (seedCfg === null) {
+                GameLog("seedCfg === null, seedId =", land.seedId);
                 return;
-                
+            }
+            
             var disasterCfg = table.GetEntry("disaster", seedCfg.disasterId);
-            if (disasterCfg === null)
+            if (disasterCfg === null) {
+                GameLog("disasterCfg === null, disaster =", seedCfg.disasterId);
                 return;
+            }
             
             var isFriend = false;
             if (rs3.length > 0) {

@@ -49,8 +49,10 @@ MsgManure.Process = function(socket, message) {
             }
             
             var disasterCfg = table.GetEntry("disaster", seedCfg.disasterId);
-            if (disasterCfg === null)
+            if (disasterCfg === null) {
+                GameLog("disasterCfg === null, disaster =", seedCfg.disasterId);
                 return;
+            }
             
             var package = JSON.parse(results[0].package);
             var kinds = 1;  //道具

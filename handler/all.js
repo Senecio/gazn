@@ -1,4 +1,4 @@
-// 2017/05/05 周五
+// 2017/05/08 周一
 // create by li shihai
 require('./activePet.js');
 require('./addFriend.js');

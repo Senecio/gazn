@@ -40,8 +40,10 @@ MsgHarvest.Process = function(socket, message) {
             }
             
             var disasterCfg = table.GetEntry("disaster", seedCfg.disasterId);
-            if (disasterCfg === null)
+            if (disasterCfg === null) {
+                GameLog("disasterCfg === null, disaster =", seedCfg.disasterId);
                 return;
+            }
             
             var reduceTime = 0;
             if (typeof land.reduceTime !== 'undefined') {
@@ -53,6 +55,7 @@ MsgHarvest.Process = function(socket, message) {
             var now = (new Date()).getTime();
             if (false === (now > (land.sowTime + (seedCfg.time.amount - reduceTime) * MinuteToMicroSecond))) {
                 // 植物未成熟
+                GameLog("植物未成熟");
                 return;
             }
             

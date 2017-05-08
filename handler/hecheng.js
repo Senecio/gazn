@@ -18,8 +18,10 @@ MsgHeCheng.Process = function(socket, message) {
             GameLog("不存在!!!, 不可能, 角色或数据不存在?");
         } else {
             var propCfg = table.GetEntry("hechengProp", propId);
-            if (propCfg === null)
+            if (propCfg === null) {
+                GameLog("propCfg === null, propId =", propId);
                 return;
+            }
 
             var package = JSON.parse(results[0].package);
             var guoshiKinds = 2; // 果实
