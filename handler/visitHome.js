@@ -13,8 +13,10 @@ MsgVisitHome.Process = function(socket, message) {
     var visitUserId = message.userId;
 
     User.GetVisitBaseData(visitUserId, function(results, fields) {
-        if (results === null) 
+        if (results === null) {
+            GameLog("访问的用户不存在! visitUserId=", visitUserId);
             return;
+        }
         MsgVisitHome.Success(socket, results)
     });
 }

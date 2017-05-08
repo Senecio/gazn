@@ -5,7 +5,7 @@ var MsgGetLogs = { }
 
 MsgGetLogs.interest = "getLogs"
 MsgGetLogs.Process = function(socket, message) {
-    GameLog("add friend");
+    GameLog("get logs");
    
     var userId = socket.userId;
     HomeLog.GetUserLog(userId, function(results, fields) {
