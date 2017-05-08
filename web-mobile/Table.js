@@ -34,11 +34,11 @@
         ],
         // 植物表
         'plant' : [
-            { id : 1, name : "百合", buy : 50, sellPrice : 25, fruit : { name : "百合", price : 1 }, output : 100, minLevel:1, time:{amount:30, part:[10,10,10],images:["zhongZi","youmiao","1_2","1_3","canliu"]}, headImagPath : "plant/1_2", disasterId : 1, sowExp:50, harvestExp:100, clearExp:50},
+            { id : 1, name : "百合", buy : 50, sellPrice : 25, fruit : { name : "百合", price : 1 }, output : 100, minLevel:1, time:{amount:30, part:[10,10,10],images:["zhongZi","youmiao","1_2","1_3","canliu"], imagesModify:[null,null,{ox:0,oy:-10,sx:1.2,sy:1.2},{ox:0,oy:0,sx:1.0,sy:1.0},null]}, headImagPath : "plant/1_2", disasterId : 1, sowExp:50, harvestExp:100, clearExp:50},
             { id : 2, name : "当归", buy : 100, sellPrice : 50, fruit : { name : "当归", price : 2 }, output : 100, minLevel:5, time:{amount:60, part:[20,20,20],images:["zhongZi","youmiao","2_2","2_3","canliu"]}, headImagPath : "plant/2_2", disasterId : 1, sowExp:50, harvestExp:105, clearExp:50},
             { id : 3, name : "枸杞", buy : 150, sellPrice : 75, fruit : { name : "枸杞", price : 3 }, output : 100, minLevel:9, time:{amount:90, part:[30,30,30],images:["zhongZi","youmiao","3_2","3_3","canliu"]}, headImagPath : "plant/3_2", disasterId : 1, sowExp:50, harvestExp:110, clearExp:50},
             { id : 4, name : "红参", buy : 200, sellPrice : 80, fruit : { name : "红参", price : 4 }, output : 100, minLevel:12, time:{amount:120, part:[40,40,40],images:["zhongZi","youmiao","4_2","4_3","canliu"]}, headImagPath : "plant/4_2", disasterId : 1, sowExp:100, harvestExp:100, clearExp:100},
-            { id : 5, name : "红枣", buy : 250, sellPrice : 90, fruit : { name : "红枣", price : 5 }, output : 100, minLevel:16, time:{amount:150, part:[50,50,500],images:["zhongZi","youmiao","5_2","5_3","canliu"]}, headImagPath : "plant/5_2", disasterId : 1, sowExp:100, harvestExp:125, clearExp:100},
+            { id : 5, name : "红枣", buy : 250, sellPrice : 90, fruit : { name : "红枣", price : 5 }, output : 100, minLevel:16, time:{amount:150, part:[50,50,50],images:["zhongZi","youmiao","5_2","5_3","canliu"]}, headImagPath : "plant/5_2", disasterId : 1, sowExp:100, harvestExp:125, clearExp:100},
             { id : 6, name : "灵芝", buy : 300, sellPrice : 100, fruit : { name : "灵芝", price : 6 }, output : 100, minLevel:20, time:{amount:180, part:[60,60,60],images:["zhongZi","youmiao","6_2","6_3","canliu"]}, headImagPath : "plant/6_2", disasterId : 1, sowExp:100, harvestExp:150, clearExp:100},
             { id : 7, name : "人参", buy : 350, sellPrice : 110, fruit : { name : "人参", price : 7 }, output : 100, minLevel:23, time:{amount:240, part:[70,70,70],images:["zhongZi","youmiao","7_2","7_3","canliu"]}, headImagPath : "plant/7_2", disasterId : 1, sowExp:100, harvestExp:200, clearExp:100},
             { id : 8, name : "沙参", buy : 400, sellPrice : 120, fruit : { name : "沙参", price : 8 }, output : 100, minLevel:27, time:{amount:720, part:[80,80,80],images:["zhongZi","youmiao","8_2","8_3","canliu"]}, headImagPath : "plant/8_2", disasterId : 1, sowExp:100, harvestExp:225, clearExp:100},
@@ -76,12 +76,12 @@
         ],
         // 土地等级表
         'landsLevel' : [
-            { id : 1, name : "1等级土地", canSow: [1,2,3] },
-            { id : 2, name : "2等级土地", canSow: [4,5,6], minLevel : 12, landsNumber : 3, needMoney : 4800, propertyId : 6, propertyNumber : 10 },
-            { id : 3, name : "3等级土地", canSow: [7,8,9], minLevel : 23, landsNumber : 5, needMoney : 7800, propertyId : 7, propertyNumber : 10},
-            { id : 4, name : "4等级土地", canSow: [10,11,12], minLevel : 34, landsNumber : 7, needMoney : 12800, propertyId : 8, propertyNumber : 10 },
-            { id : 5, name : "5等级土地", canSow: [13,14,15], minLevel : 45, landsNumber : 9, needMoney : 18000, propertyId : 9, propertyNumber : 10 },
-            { id : 6, name : "6等级土地", canSow: [16,17,18], minLevel : 56, landsNumber : 12, needMoney : 23000, propertyId : 10, propertyNumber : 10 }
+            { id : 1, name : "1等级土地", canSow: [1,2,3], effect : [0,0,0] },
+            { id : 2, name : "2等级土地", canSow: [4,5,6], effect : [0.1,0.1,0.1], minLevel : 12, landsNumber : 3, needMoney : 4800, propertyId : 6, propertyNumber : 10 },
+            { id : 3, name : "3等级土地", canSow: [7,8,9], effect : [0.2,0.2,0.1], minLevel : 23, landsNumber : 5, needMoney : 7800, propertyId : 7, propertyNumber : 10},
+            { id : 4, name : "4等级土地", canSow: [10,11,12], effect : [0.3,0.3,0.2], minLevel : 34, landsNumber : 7, needMoney : 12800, propertyId : 8, propertyNumber : 10 },
+            { id : 5, name : "5等级土地", canSow: [13,14,15], effect : [0.4,0.4,0.2], minLevel : 45, landsNumber : 9, needMoney : 18000, propertyId : 9, propertyNumber : 10 },
+            { id : 6, name : "6等级土地", canSow: [16,17,18], effect : [0.5,0.5,0.3], minLevel : 56, landsNumber : 12, needMoney : 23000, propertyId : 10, propertyNumber : 10 }
         ],
         //  土地解锁表
         'unlockLands' : [
