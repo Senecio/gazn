@@ -58,6 +58,7 @@
             { id : 2, name : "化肥2", type : 2, data : 30, desc : "减少30分钟成熟时间", buy : 1500, imagPath : "prop/huafei_2"},
             { id : 3, name : "化肥3", type : 2, data : 60, desc : "减少1小时成熟时间", buy : 2000, imagPath : "prop/huafei_3"},
             { id : 4, name : "化肥4", type : 2, data : 120, desc : "减少2小时成熟时间", buy : 3000, imagPath : "prop/huafei_10"},
+	    { id : 5, name : "测试神器", type : 2, data : 1200, desc : "减少20小时成熟时间", buy : 1, imagPath : "prop/huafei_10"},
             { id : 6, name : "1级营养液", type : 3, data : 0, desc : "升级2等级土地时使用", buy : 1000, imagPath : "prop/yingyangye"},
             { id : 7, name : "2级营养液", type : 3, data : 0, desc : "升级3等级土地时使用", buy : 5000, imagPath : "prop/yingyangye"},
             { id : 8, name : "3级营养液", type : 3, data : 0, desc : "升级4等级土地时使用", buy : 10000, imagPath : "prop/yingyangye"},
@@ -90,7 +91,7 @@
         // 商店
         'shop' : [
             { id : 1, name :"种子", sell:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]},
-            { id : 2, name :"道具", sell:[1,2,3,4,6,7,8,9,10]},
+            { id : 2, name :"道具", sell:[1,2,3,4,5,6,7,8,9,10]},
             { id : 3, name :"宠物", sell:[1,2,3,4,6,7]}
         ],
         // 灾害  effect1 出虫(每小时减少收成的x%)  effect2  缺水(每小时增加x分钟的时间) effect 营养流失(前面两种效果叠加)
