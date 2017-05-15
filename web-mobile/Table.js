@@ -77,13 +77,19 @@
         ],
         // 土地等级表
         'landsLevel' : [
-            { id : 1, name : "1等级土地", canSow: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18], effect : [0,0,0] },
-            { id : 2, name : "2等级土地", canSow: [4,5,6], effect : [0.1,0.1,0.1], minLevel : 12, landsNumber : 3, needMoney : 4800, propertyId : 6, propertyNumber : 10 },
-            { id : 3, name : "3等级土地", canSow: [7,8,9], effect : [0.2,0.2,0.1], minLevel : 23, landsNumber : 5, needMoney : 7800, propertyId : 7, propertyNumber : 10},
-            { id : 4, name : "4等级土地", canSow: [10,11,12], effect : [0.3,0.3,0.2], minLevel : 34, landsNumber : 7, needMoney : 12800, propertyId : 8, propertyNumber : 10 },
-            { id : 5, name : "5等级土地", canSow: [13,14,15], effect : [0.4,0.4,0.2], minLevel : 45, landsNumber : 9, needMoney : 18000, propertyId : 9, propertyNumber : 10 },
-            { id : 6, name : "6等级土地", canSow: [16,17,18], effect : [0.5,0.5,0.3], minLevel : 56, landsNumber : 12, needMoney : 23000, propertyId : 10, propertyNumber : 10 }
+            { id : 1, name : "1等级土地", imagPaht : "ui/tdsj_icon1", canSow: [1,2,3], effect : [0,0,0] },
+            { id : 2, name : "2等级土地", imagPaht : "ui/tdsj_icon1", canSow: [4,5,6], effect : [0.1,0.1,0.1,0.5,0.7], minLevel : 12, landsNumber : 3, needMoney : 4800, propertyId : 6, propertyNumber : 10 },
+            { id : 3, name : "3等级土地", imagPaht : "ui/tdsj_icon1", canSow: [7,8,9], effect : [0.2,0.2,0.1], minLevel : 23, landsNumber : 5, needMoney : 7800, propertyId : 7, propertyNumber : 10},
+            { id : 4, name : "4等级土地", imagPaht : "ui/tdsj_icon1", canSow: [10,11,12], effect : [0.3,0.3,0.2], minLevel : 34, landsNumber : 7, needMoney : 12800, propertyId : 8, propertyNumber : 10 },
+            { id : 5, name : "5等级土地", imagPaht : "ui/tdsj_icon1", canSow: [13,14,15], effect : [0.4,0.4,0.2], minLevel : 45, landsNumber : 9, needMoney : 18000, propertyId : 9, propertyNumber : 10 },
+            { id : 6, name : "6等级土地", imagPaht : "ui/tdsj_icon1", canSow: [16,17,18], effect : [0.5,0.5,0.3], minLevel : 56, landsNumber : 12, needMoney : 23000, propertyId : 10, propertyNumber : 10 }
         ],
+		
+		// 土地最大等级
+		'landMaxLevel' : [
+			{id : 1, maxLandLevel : 6}
+		],
+		
         //  土地解锁表
         'unlockLands' : [
             { id : 1, needMoney : [1000,150,300,450,600,1200,1600,2000,2700,4800,5200,5500], minLevel : [1,2,3,4,5,6,7,8,9,10,11,12] }
@@ -91,7 +97,7 @@
         // 商店
         'shop' : [
             { id : 1, name :"种子", sell:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]},
-            { id : 2, name :"道具", sell:[1,2,3,4,5,6,7,8,9,10]},
+            { id : 2, name :"道具", sell:[1,2,3,4,6,7,8,9,10]},
             { id : 3, name :"宠物", sell:[1,2,3,4,6,7]}
         ],
         // 灾害  effect1 出虫(每小时减少收成的x%)  effect2  缺水(每小时增加x分钟的时间) effect 营养流失(前面两种效果叠加)
@@ -111,8 +117,12 @@
 			{id : 7, name : "道具名称7", headImagPath : "hecheng/hechengHead_1", imagPath : "hecheng/hechengProp_1", money : 1000, cailiao : [{id : 1, count : 30}, {id : 2, count : 30},{id : 3, count : 30}]}
 		],
 		
+		'hechenglayer' : [
+			{id : 1, name : "合成道具", items : [1,2,3,4,6,7]}
+		],
+		
 		//兑换商品
-		'duihuanshop' : [
+		'duihuanshangpin' : [
 			{id : 1, name : "商品名称1", imagPath : "duihuan/duiHuanProp_1", desc : "商品说明1", duihuanProp : [{id : 1, count : 50},{id : 2, count : 50},{id : 3, count : 50}]},
 			{id : 2, name : "商品名称2", imagPath : "duihuan/duiHuanProp_1", desc : "商品说明2", duihuanProp : [{id : 1, count : 50},{id : 2, count : 50},{id : 3, count : 50}]},
 			{id : 3, name : "商品名称3", imagPath : "duihuan/duiHuanProp_1", desc : "商品说明3", duihuanProp : [{id : 1, count : 50},{id : 2, count : 50},{id : 3, count : 50}]},
@@ -122,10 +132,11 @@
 			{id : 7, name : "商品名称7", imagPath : "duihuan/duiHuanProp_1", desc : "商品说明7", duihuanProp : [{id : 1, count : 50},{id : 2, count : 50},{id : 3, count : 50}]}
 		],
 		
-		'hechengduihuan' : [
-			{id : 1, name : "合成道具", items : [1,2,3,4,6,7]},
-			{id : 2, name : "兑换商品", items : [1,2,3,4,6,7]}
-		],
+		//兑换商店
+		"duihuanshop" : [
+            { id : 1, name :"兑换商品", sell:[1,2,3,4,5,6,7]},
+            { id : 2, name :"未知", sell:[]}
+        ],
 		
         GetEntry : function(tableName, id)
         {
