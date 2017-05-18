@@ -10,20 +10,18 @@ var expressWs = require('express-ws')(app);
 // 设置客户端根目录
 app.use(express.static(__dirname + "/web-mobile"));
 // 监听端口
-app.listen(process.env.LEANCLOUD_APP_PORT);
+app.listen(8090);
 
 GameLog = require('./Logger.js');
 config = require('./config.js');
 table = require('./web-mobile/Table.js');
-
-// 建立websocket
-var expressWs = require('express-ws')(app);
 
 User = new (require('./logic/user.js'))();
 Lands = new (require('./logic/lands.js'))();
 Package = new (require('./logic/package.js'))();
 Disaster = new (require('./logic/disaster.js'))();
 HomeLog = new (require('./logic/homeLog.js'))();
+HomeMsg = new (require('./logic/homeMsg.js'))();
 Pet = new (require('./logic/pet.js'))();
 MsgHandler = require('./msgHandler.js');
 require('./handler/all.js');

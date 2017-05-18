@@ -1,10 +1,11 @@
-// 2017/05/08 周一
+// 2017/05/17 周三
 // create by li shihai
 require('./activePet.js');
 require('./addFriend.js');
 require('./buyItem.js');
 require('./clearDisaster.js');
 require('./getLogs.js');
+require('./getMsgs.js');
 require('./harvest.js');
 require('./hecheng.js');
 require('./login.js');
@@ -19,4 +20,5 @@ require('./unlockLands.js');
 require('./upgradeLands.js');
 require('./visitClearDisaster.js');
 require('./visitHome.js');
+require('./visitMessage.js');
 require('./visitSteal.js');
