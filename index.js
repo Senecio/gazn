@@ -10,7 +10,7 @@ var expressWs = require('express-ws')(app);
 // 设置客户端根目录
 app.use(express.static(__dirname + "/web-mobile"));
 // 监听端口
-app.listen(8090);
+app.listen(80);
 
 GameLog = require('./Logger.js');
 config = require('./config.js');
