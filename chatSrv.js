@@ -166,7 +166,7 @@ ChatServer.prototype.NewClient = function(client) {
     
     client.socket.on('chat', function(msg) {
         GameLog("chat", msg);
-        IO.emit('chat', { name: client.name, userId : client.userId, lv : msg.level, msg : msg });
+        IO.emit('chat', { name: client.name, userId : client.userId, lv : client.level, msg : msg });
     });
     
     client.socket.on('roomChat', function(msg) {
