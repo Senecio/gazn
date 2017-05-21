@@ -1,4 +1,4 @@
-// 2017/05/17 周三
+// 2017/05/21 周日
 // create by li shihai
 require('./activePet.js');
 require('./addFriend.js');
@@ -15,6 +15,8 @@ require('./register.js');
 require('./removeFriend.js');
 require('./removePlant.js');
 require('./sellFruit.js');
+require('./sellSeed.js');
+require('./signInAward.js');
 require('./sowSeeds.js');
 require('./unlockLands.js');
 require('./upgradeLands.js');

@@ -16,7 +16,7 @@ function MySQL()
     this.connected = false;
 }
 
-MySQL.prototype.Init = function (host, port, database, user, password)
+MySQL.prototype.Init = function (host, port, database, user, password, successCallback)
 {
     var me = this;
     // 建立数据库连接
@@ -45,6 +45,9 @@ MySQL.prototype.Init = function (host, port, database, user, password)
 
         me.connected = true;
         GameLog('数据库连接成功-->>connected as id ' + connection.threadId);
+        if (successCallback) {
+            successCallback();
+        }
     });
     
     connection.on('error', function(error) {

@@ -18,6 +18,14 @@ User.prototype.UpdateMoney = function(userId, money, callback) {
     });
 }
 
+// 更新金币
+User.prototype.AddMoney = function(userId, addMoney, callback) {
+    var cmd = "UPDATE `farm_user` SET `money`=`money`+? WHERE `id`=?";
+    mysql.Query2(cmd, [addMoney, userId], function (results, fields) {
+        if (callback) callback(true);
+    });
+}
+
 // 更新经验
 User.prototype.UpdateExperience = function(userId, experience, callback) {
     var cmd = "UPDATE `farm_user` SET `experience`=? WHERE `id`=?";
@@ -59,7 +67,7 @@ User.prototype.GetLevelExp = function(experience) {
 // 登陆后的所有需要数据
 User.prototype.SendAllBaseData = function(socket, callback) {
     var userId = socket.userId;
-    var cmd = "SELECT t1.username,t1.money,t1.experience,t1.vip,t1.tq,t2.lands,t2.package,t2.pets FROM farm_user t1 LEFT JOIN farm_game t2 ON t1.id=t2.userid WHERE t1.id=?";
+    var cmd = "SELECT t1.username,t1.money,t1.experience,t1.vip,t1.tq,t2.lands,t2.package,t2.pets,t2.signIn FROM farm_user t1 LEFT JOIN farm_game t2 ON t1.id=t2.userid WHERE t1.id=?";
     mysql.Query2(cmd, [userId], function (results, fields) {
         if (results.length === 0) {
             if (callback) callback(false);
@@ -67,8 +75,26 @@ User.prototype.SendAllBaseData = function(socket, callback) {
         }else {
             var user = results[0];
             var lands = user.lands;
+            
+            var signInCount = Global.signInCount;
+            var days = table["signInAward"].length;
+            var cycle = Math.floor(signInCount / days);
+            var signInDay = signInCount % days;
+            
+            var signInDays = null;
+            if (user.signIn !== null) {
+                var signIn = JSON.parse(user.signIn);
+                if (cycle === signIn.cycle) {
+                    signInDays = signIn.days;
+                }
+            }
+            
             var obj = { type : "userBaseData", id : userId, username : user.username, 
-                money : user.money, experience : user.experience, vip : user.vip, lands : lands, package : user.package, pets : user.pets  };
+                money : user.money, experience : user.experience, vip : user.vip, lands : lands, 
+                package : user.package, pets : user.pets, 
+                signInData : { signInDay : signInDay, signIn : signInDays } 
+            };
+            
             var msg = JSON.stringify(obj);
             socket.send(msg);
             if (callback) callback(true);
@@ -190,6 +216,8 @@ User.prototype.SendDataSync = function(socket, dataFields, callback) {
             fieldsCmd += 't2.package,';
         }else if (dataFields[i] === 'pets') {
             fieldsCmd += 't2.pets,';
+        }else if (dataFields[i] === 'signIn') {
+            fieldsCmd += 't2.signIn,';
         }
         else  {
             GameLog("=== error field : " +  dataFields[i] + "===" );
@@ -224,6 +252,8 @@ User.prototype.SendDataSync = function(socket, dataFields, callback) {
                     obj['package'] = user.package;
                 }else if (dataFields[i] === 'pets') {
                     obj['pets'] = user.pets;
+                }else if (dataFields[i] === 'signIn') {
+                    obj['signIn'] = JSON.parse(user.signIn).days;
                 }
             }
 

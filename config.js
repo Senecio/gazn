@@ -3,7 +3,7 @@
 
 var Config = {
     
-    lister_port : 34443,
+    lister_port : 80,
     /*
     db_host : '58dc68f83bd4f.gz.cdb.myqcloud.com',
     db_port : 5818,
@@ -23,6 +23,8 @@ var Config = {
     db_database : 'bdm25324667_db',
     db_user : 'bdm25324667',
     db_password : '0217104lsh', 
+
+	signInAwardRefreshTime : { hours : 4, minutes : 0 }, // 奖励每天刷新时间(小时0-23,分钟0-60).
     
     GetUserTableName : function () {
         return 'farm_user';

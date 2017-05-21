@@ -16,12 +16,14 @@ GameLog = require('./Logger.js');
 config = require('./config.js');
 table = require('./web-mobile/Table.js');
 
+Global = new (require('./logic/global.js'))();
 User = new (require('./logic/user.js'))();
 Lands = new (require('./logic/lands.js'))();
 Package = new (require('./logic/package.js'))();
 Disaster = new (require('./logic/disaster.js'))();
 HomeLog = new (require('./logic/homeLog.js'))();
 HomeMsg = new (require('./logic/homeMsg.js'))();
+SignInAward = new (require('./logic/signIn.js'))();
 Pet = new (require('./logic/pet.js'))();
 MsgHandler = require('./msgHandler.js');
 require('./handler/all.js');
@@ -50,4 +52,12 @@ var port = config.db_port;
 var database = config.db_database;
 var user = config.db_user;
 var password = config.db_password;
-mysql.Init(host, port, database, user, password);
+mysql.Init(host, port, database, user, password, start);
+
+function start() {
+    Global.Init();
+    Global.UpdateSignInCountEveryData(config.signInAwardRefreshTime.hours, 
+        config.signInAwardRefreshTime.minutes);
+    
+    Global.GetSignInCount();
+}

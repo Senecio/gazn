@@ -161,7 +161,7 @@ MsgBuyItems.Process = function(socket, message) {
                         });
                     },
                     function(callback){
-                        // 添加新物品
+                        // 添加宠物
                         Pet.Add(userId, itemId, now, validTime, function(rs) {
                             callback(null, rs);
                         });
