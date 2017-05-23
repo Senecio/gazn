@@ -114,7 +114,7 @@
         ],
         
         'hechenglayer' : [
-            {id : 1, name : "合成道具", items : [1,2,3,4,6,7]}
+            {id : 1, name : "合成道具", items : [1,2]}
         ],
         
         //兑换商品
