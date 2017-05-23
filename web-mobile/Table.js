@@ -71,9 +71,9 @@
         ],
         //宠物
         'pet' : [
-            {id : 1, name : "哈士奇", data : [0.3,0.1], desc : "降低偷盗成功率30%/n降低果实损失10%", time : {day : [7, 30, 90], money:[500,2000,6000]}, headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
-            {id : 2, name : "狮子犬", data : [0.4,0.15], desc : "降低偷盗成功率40%；/n降低果实损失15%", time : {day : [7, 30, 90], money:[600,2500,7500]}, headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
-            {id : 3, name : "藏獒", data : [0.5,0.25], desc : "降低偷盗成功率50%；/n降低果实损失25%", time : {day : [7, 30, 90], money:[700,3000,9000]}, headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
+            {id : 1, name : "哈士奇", data : [0.3,0.1], desc : "降低偷盗成功率30%\n降低果实损失10%", time : {day : [7, 30, 90], money:[500,2000,6000]}, headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
+            {id : 2, name : "狮子犬", data : [0.4,0.15], desc : "降低偷盗成功率40%；\n降低果实损失15%", time : {day : [7, 30, 90], money:[600,2500,7500]}, headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
+            {id : 3, name : "藏獒", data : [0.5,0.25], desc : "降低偷盗成功率50%；\n降低果实损失25%", time : {day : [7, 30, 90], money:[700,3000,9000]}, headImagPath : "pet/petHead_1", imagPath : "pet/pet_1"},
 
         ],
         // 土地等级表
