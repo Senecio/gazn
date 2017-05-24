@@ -81,7 +81,7 @@ Global.prototype.GetSignInCount = function(callback) {
             return;
         }else {
             var data = JSON.parse(results[0].data);
-            //self.signInCount = data.signInCount;
+            self.signInCount = data.signInCount;
             if (callback) callback(data.signInCount);
         }
     });
