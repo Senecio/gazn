@@ -1,6 +1,8 @@
 if(typeof module !== 'undefined')
     module.exports = Global;
 
+var hourToSecond = 3600;
+    
 function Global() {
     this.signInCount = 0;
     GameLog("Global------------->")
@@ -22,7 +24,7 @@ Global.prototype.LoopByEveryData = function(hours, minutes, overAtOnceRun, func)
     
     if (nowHours === hours && nowMinutes == minutes) {
         func();
-        setInterval(func, 24*36000*1000);
+        setInterval(func, 24*hourToSecond*1000);
         GameLog('24小时0分钟后刷新奖励');
         return;
     }
@@ -39,11 +41,11 @@ Global.prototype.LoopByEveryData = function(hours, minutes, overAtOnceRun, func)
         }
         
         var remainHours = 23 - nowHours;
-        setTimeout(callback, ((remainHours + hours)*36000 + (60 - minutes)*60)*1000);
+        setTimeout(callback, ((remainHours + hours)*hourToSecond + (60 - minutes)*60)*1000);
         GameLog((remainHours + hours)+'小时' + (60-minutes)+'分钟后刷新奖励');
     }
     else {
-        setTimeout(callback, ((hours - nowHours)*36000 +(minutes - nowMinutes)*60)*1000);
+        setTimeout(callback, ((hours - nowHours)*hourToSecond +(minutes - nowMinutes)*60)*1000);
         GameLog((hours - nowHours)+'小时'+(minutes - nowMinutes)+'分钟后刷新奖励');
     }
 }
