@@ -1,1 +1,1 @@
-{"__type__":"cc.SpriteFrame","content":{"name":"petHead_1","texture":"e9a89989-c2d6-48e1-ab9a-fd6a9507008a","rect":[32,0,844,795],"offset":[16,0],"originalSize":[876,795]}}
+{"__type__":"cc.SpriteFrame","content":{"name":"petHead_1","texture":"e9a89989-c2d6-48e1-ab9a-fd6a9507008a","rect":[1,1,81,79],"offset":[0,0],"originalSize":[83,81]}}
