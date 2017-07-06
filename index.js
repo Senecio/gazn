@@ -54,7 +54,15 @@ var user = config.db_user;
 var password = config.db_password;
 mysql.Init(host, port, database, user, password, start);
 
+var once = false;  // 只启动一次
+
 function start() {
+
+    if (once === true) {
+        return;
+    }
+    once = true;
+    
     Global.Init();
     Global.UpdateSignInCountEveryData(config.signInAwardRefreshTime.hours, 
         config.signInAwardRefreshTime.minutes);

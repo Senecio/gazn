@@ -33,6 +33,7 @@ MySQL.prototype.Init = function (host, port, database, user, password, successCa
     connection.connect(function(err) {
         if (err) {
             GameLog('error connecting: ' + err.stack);
+            me.PollConnect(host, port, database, user, password, 60000);
             return false;
         }
         
@@ -51,40 +52,60 @@ MySQL.prototype.Init = function (host, port, database, user, password, successCa
     });
     
     connection.on('error', function(error) {
-        GameLog("数据库抛出一个错误.");
-        if(error.code === 'PROTOCOL_CONNECTION_LOST') {     // Connection to the MySQL server is usually
-            GameLog('数据库断开连接(error code : ' + error.code + ').');
+        GameLog("数据库抛出一个错误."+error.code);
+        if (error.code === 'ECONNRESET') {
             me.connected = false;
-            me.Init(host, database, user, password);        // lost due to either server restart, or a
-        } else {                                            // connnection idle timeout (the wait_timeout
-            throw error;                                    // server variable configures this)
+            me.PollConnect(host, port, database, user, password, 60000);
+        }else if(error.code === 'PROTOCOL_CONNECTION_LOST') {              // Connection to the MySQL server is usually
+            GameLog('数据库断开连接(error code : ' + error.code + ').');   // lost due to either server restart, or a
+            me.connected = false;                                          // connnection idle timeout (the wait_timeout
+            me.PollConnect(host, port, database, user, password, 5000);    // server variable configures this)
+        } else {
+            throw error; 
         }
     });
     
     me.connection = connection;
 }
 
+MySQL.prototype.PollConnect = function (host, port, database, user, password, ms)
+{
+    var me = this;
+    if (typeof me.timeOutHandle !== 'undefined') {
+        clearTimeout(me.timeOutHandle);
+    }
+    
+    me.timeOutHandle= setTimeout(function(){
+        me.timeOutHandle = undefined;
+        me.Init(host, port, database, user, password);  // lost due to either server restart, or a
+    }, ms);
+}
+
 // 查询
 MySQL.prototype.Query = function(commond, func)
 {
     if (this.connected == true && this.connection) {
-        GameLog("SQL->", commond);
-        var startTime = (new Date()).getMilliseconds();
-        this.connection.query(commond, function (err, results, fields) {
-            var endTime = (new Date()).getMilliseconds();
-            GameLog("查询用时:",(endTime - startTime), "ms");
-            if (err) {
-                if(err.code === 'ER_PARSE_ERROR') {
-                    GameLog("查询语句解析错误!", err);
-                } else {
-                    GameLog(err); 
+        try {
+            var startTime = (new Date()).getMilliseconds();
+            var t = this.connection.query(commond, function (err, results, fields) {
+                var endTime = (new Date()).getMilliseconds();
+                GameLog("查询用时:",(endTime - startTime), "ms");
+                if (err) {
+                    if(err.code === 'ER_PARSE_ERROR') {
+                        GameLog("查询语句解析错误!", err);
+                    } else {
+                        GameLog(err); 
+                    }
+                    return; 
                 }
-                return; 
-            }
-            
-            if (typeof func === 'function')
-                func(results, fields);
-        });
+                
+                if (typeof func === 'function')
+                    func(results, fields);
+            });
+            GameLog("SQL->", t.sql);
+        } catch (e) {
+            GameLog("查询错误" + e);
+        }
     }
  }
  
@@ -92,22 +113,26 @@ MySQL.prototype.Query = function(commond, func)
 {
     if (this.connected == true && this.connection) {
         var startTime = (new Date()).getMilliseconds();
-        var t = this.connection.query(commond, array, function (err, results, fields) {
-            var endTime = (new Date()).getMilliseconds();
-            GameLog("查询用时:",(endTime - startTime), "ms");
-            if (err) { 
-                if(err.code === 'ER_PARSE_ERROR') {
-                    GameLog("查询语句解析错误!", err);
-                } else {
-                    GameLog(err); 
+        try {
+            var t = this.connection.query(commond, array, function (err, results, fields) {
+                var endTime = (new Date()).getMilliseconds();
+                GameLog("查询用时:",(endTime - startTime), "ms");
+                if (err) { 
+                    if(err.code === 'ER_PARSE_ERROR') {
+                        GameLog("查询语句解析错误!", err);
+                    } else {
+                        GameLog(err); 
+                    }
+                    return; 
                 }
-                return; 
-            }
-            
-            if (typeof func === 'function')
-                func(results, fields);
-        });
-        GameLog("SQL->", t.sql);
+                
+                if (typeof func === 'function')
+                    func(results, fields);
+            });
+            GameLog("SQL->", t.sql);
+        } catch (e) {
+            GameLog("查询错误" + e);
+        }
     }
  }
 
@@ -148,5 +173,9 @@ MySQL.prototype.Exit = function()
     if (this.connected) {
         this.connection.destroy();
         this.connected = false;
+    }
+
+    if (typeof this.timeOutHandle !== 'undefined') {
+        clearTimeout(this.timeOutHandle);
     }
 }
